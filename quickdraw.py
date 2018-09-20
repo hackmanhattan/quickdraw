@@ -56,17 +56,17 @@ draw_screen = pygame.image.load('quickdraw_draw.jpg')
 #Setup the backgrounds
 
 # 0 game initialized
-backgrounds.append(new Drawable("background_title", "quickdraw_title_b.jpg", 0,0, True ))
+backgrounds.append(Drawable("background_title", "quickdraw_title_b.jpg", 0,0, True ))
 # 1 round started
-backgrounds.append(new Drawable("background_wait", "quickdraw_wait.jpg", 0,0, False ))
+backgrounds.append(Drawable("background_wait", "quickdraw_wait.jpg", 0,0, False ))
 # 2 ready for fire
-backgrounds.append(new Drawable("background_draw", "quickdraw_draw.jpg", 0,0, False ))
+backgrounds.append(Drawable("background_draw", "quickdraw_draw.jpg", 0,0, False ))
 # 3 winner 
-backgrounds.append(new Drawable("background_p2win", "quickdraw_p2win.jpg", 0,0, False ))
+backgrounds.append(Drawable("background_p2win", "quickdraw_p2win.jpg", 0,0, False ))
 # 4 penalty
-backgrounds.append(new Drawable("background_penalty", "quickdraw_penalty.jpg", 0,0, False ))
+backgrounds.append(Drawable("background_penalty", "quickdraw_penalty.jpg", 0,0, False ))
 # 5 timeout
-backgrounds.append(new Drawable("background_timeout", "quickdraw_timeout.jpg", 0,0, False ))
+backgrounds.append(Drawable("background_timeout", "quickdraw_timeout.jpg", 0,0, False ))
 
 
 musicpos = 0
