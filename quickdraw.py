@@ -26,7 +26,7 @@ basicfont = pygame.font.SysFont(None, 72)
 color_font = (0, 0, 0)
 color_bg = (255,255,255)
 
-piezo_min = 300
+piezo_min = 75
 
 # music definition
 pygame.mixer.music.load("../audio/bg.mp3")
