@@ -49,6 +49,14 @@ titlescreen = pygame.image.load('quickdraw_title_b.jpg')
 wait_screen = pygame.image.load('quickdraw_wait.jpg')
 draw_screen = pygame.image.load('quickdraw_draw.jpg')
 
+musicpos = 0
+def pause_music():
+	musicpos = pygame.mixer.music.get_pos()
+	pygame.mixer.music.fadeout(music_fadeout_time)
+
+def unpause_music():
+	pygame.mixer.music.play(musicpos)
+
 def readadc():
 	values = [0]*8
 	for j in range(0,signal_reads):
