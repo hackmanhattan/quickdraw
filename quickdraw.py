@@ -5,6 +5,35 @@ import time
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
 
+
+###################################
+#       CLASS DEFINITIONS         #
+###################################
+class Drawable:
+	def __init__(self, name, image, pos_x, pos_y, draw):
+		self.name = name
+		self.image = pygame.image.load(image)
+		self.pos_x = pos_x
+		self.pos_y = pos_y
+		self.drawable = draw
+
+	def draw(self, screen):
+		if (self.drawable):
+			screen.blit(self.image, (self.pos_x, self.pos_y))
+
+class TextField:
+	def __init__(self, name, text, pos_x, pos_y, draw):
+		self.name = name
+		self.text = text
+		self.pos_x = pos_x
+		self.pos_y = pos_y
+		self.drawable = draw
+
+	def draw(self, screen):
+		if (self.drawable):
+			screen.blit(self.image, (self.pos_x, self.pos_y))
+
+
 SPI_PORT = 0
 SPI_DEVICE = 0
 
@@ -324,35 +353,4 @@ def main():
 		elif game_state is 5:
 			render_timeout()
 
-main()
-
-
-
-
-
-###################################
-#       CLASS DEFINITIONS         #
-###################################
-class Drawable:
-	def __init__(self, name, image, pos_x, pos_y, draw):
-		self.name = name
-		self.image = pygame.image.load(image)
-		self.pos_x = pos_x
-		self.pos_y = pos_y
-		self.drawable = draw
-
-	def draw(self, screen):
-		if (self.drawable):
-			screen.blit(self.image, (self.pos_x, self.pos_y))
-
-class TextField:
-	def __init__(self, name, text, pos_x, pos_y, draw):
-		self.name = name
-		self.text = text
-		self.pos_x = pos_x
-		self.pos_y = pos_y
-		self.drawable = draw
-
-	def draw(self, screen):
-		if (self.drawable):
-			screen.blit(self.image, (self.pos_x, self.pos_y))
+			main()
