@@ -103,10 +103,12 @@ def space_pressed(values):
 	return False
 
 def gamestart():
+	return True
 	###screen.blit(titlescreen,(0,0))
 	###pygame.display.update()
 
 def render_fire(time_elapsed):
+	return True
 	###screen.fill(color_bg)
 	###screen.blit(draw_screen, (0,0))
 	###pygame.display.update()
@@ -172,8 +174,9 @@ def player_win(tgtplayer,tgttime):
 
 
 def render_round_start():
+	return True
 	###screen.blit(wait_screen,(0,0))
-	pygame.display.update()
+	###pygame.display.update()
 
 def player_win(tgtplayer,tgttime):
 	tgtstr = 'Player ' + str(tgtplayer) + ' WINS'
