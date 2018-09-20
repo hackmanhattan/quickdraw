@@ -353,4 +353,4 @@ def main():
 		elif game_state is 5:
 			render_timeout()
 
-			main()
+main()
