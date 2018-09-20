@@ -267,7 +267,7 @@ def main():
 
 		#Render all the drawables on a new screen
 		screen.fill((255,255,255))
-		for drawable in drawables:
+		for drawable in backgrounds:
 			drawable.draw(screen)
 
 		cur_input = readadc()
