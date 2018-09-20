@@ -8,6 +8,10 @@ import Adafruit_MCP3008
 SPI_PORT = 0
 SPI_DEVICE = 0
 
+backgrounds = []
+foregrounds = []
+texts = []
+
 mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
  
 pygame.init()
@@ -49,7 +53,24 @@ titlescreen = pygame.image.load('quickdraw_title_b.jpg')
 wait_screen = pygame.image.load('quickdraw_wait.jpg')
 draw_screen = pygame.image.load('quickdraw_draw.jpg')
 
+#Setup the backgrounds
+
+# 0 game initialized
+backgrounds.append(new Drawable("background_title", "quickdraw_title_b.jpg", 0,0, True ))
+# 1 round started
+backgrounds.append(new Drawable("background_wait", "quickdraw_wait.jpg", 0,0, False ))
+# 2 ready for fire
+backgrounds.append(new Drawable("background_draw", "quickdraw_draw.jpg", 0,0, False ))
+# 3 winner 
+backgrounds.append(new Drawable("background_p2win", "quickdraw_p2win.jpg", 0,0, False ))
+# 4 penalty
+backgrounds.append(new Drawable("background_penalty", "quickdraw_penalty.jpg", 0,0, False ))
+# 5 timeout
+backgrounds.append(new Drawable("background_timeout", "quickdraw_timeout.jpg", 0,0, False ))
+
+
 musicpos = 0
+
 def pause_music():
 	musicpos = pygame.mixer.music.get_pos()
 	pygame.mixer.music.fadeout(music_fadeout_time)
@@ -203,6 +224,12 @@ def main():
 	# start music
 	music_is_on = False
 	while True:
+
+		#Render all the drawables on a new screen
+		screen.fill((255,255,255))
+		for drawable in drawables:
+			drawable.draw(screen)
+
 		cur_input = readadc()
 		#print(cur_input)
 		if space_pressed(cur_input):
@@ -280,3 +307,34 @@ def main():
 			render_timeout()
 
 main()
+
+
+
+
+
+###################################
+#       CLASS DEFINITIONS         #
+###################################
+class Drawable:
+	def __init__(self, name, image, pos_x, pos_y, draw):
+		self.name = name
+		self.image = pygame.image.load(image)
+		self.pos_x = pos_x
+		self.pos_y = pos_y
+		self.drawable = draw
+
+	def draw(self, screen):
+		if (self.drawable):
+			screen.blit(self.image, (self.pos_x, self.pos_y))
+
+class TextField:
+	def __init__(self, name, text, pos_x, pos_y, draw):
+		self.name = name
+		self.text = text
+		self.pos_x = pos_x
+		self.pos_y = pos_y
+		self.drawable = draw
+
+	def draw(self, screen):
+		if (self.drawable):
+			screen.blit(self.image, (self.pos_x, self.pos_y))
