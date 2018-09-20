@@ -214,12 +214,11 @@ clock.tick(120)
 
 game_state = 0 #flag for game state
 
-def changeState(state) {
+def changeState(state):
 	if (game_state !== state):
 		backgrounds[game_state].drawable = False
 		game_state = state
 		backgrounds[game_state].drawable = True
-}
 
 def main():
 	round_time = 0
