@@ -29,11 +29,11 @@ color_bg = (255,255,255)
 piezo_min = 300
 
 # music definition
-pygame.mixer.music.load("Dj_Okawari_Kaleidoscope_Full.mp3")
+pygame.mixer.music.load("../audio/bg.mp3")
 
 # effects definition
-effect = pygame.mixer.Sound('Zen_Buddhist_Temple_Bell-SoundBible.com-331362457.wav')
-round_start_effect = pygame.mixer.Sound('goodbadugly-whistle-long.wav')
+effect = pygame.mixer.Sound('../audio/Zen_Buddhist_Temple_Bell-SoundBible.com-331362457.wav')
+round_start_effect = pygame.mixer.Sound('../audio/goodbadugly-whistle-long.wav')
 
 reset_idx = 5
 round_min = 4
