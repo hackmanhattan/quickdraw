@@ -103,13 +103,13 @@ def space_pressed(values):
 	return False
 
 def gamestart():
-	screen.blit(titlescreen,(0,0))
-	pygame.display.update()
+	###screen.blit(titlescreen,(0,0))
+	###pygame.display.update()
 
 def render_fire(time_elapsed):
-	screen.fill(color_bg)
-	screen.blit(draw_screen, (0,0))
-	pygame.display.update()
+	###screen.fill(color_bg)
+	###screen.blit(draw_screen, (0,0))
+	###pygame.display.update()
 
 def render_penalty(tgtplayer,count):
 	cur_text = "PENALTY FOR " + str(tgtplayer)
@@ -172,7 +172,7 @@ def player_win(tgtplayer,tgttime):
 
 
 def render_round_start():
-	screen.blit(wait_screen,(0,0))
+	###screen.blit(wait_screen,(0,0))
 	pygame.display.update()
 
 def player_win(tgtplayer,tgttime):
@@ -246,11 +246,13 @@ def main():
 				#pygame.mixer.music.fadeout(music_fadeout_time)
 				pygame.mixer.music.pause()
 				round_start_effect.play()
-				game_state = 1
+				###game_state = 1
+				changeState(1)
 				round_time = random.randint(round_min, round_max)
 				round_start_time = time.time()
 			elif game_state in [3,4,5]:
-				game_state = 0
+				changeState(0)
+				###game_state = 0
 				penalty = {}
 				winner = {}
 				music_is_on = True
@@ -265,7 +267,8 @@ def main():
 					pygame.mixer.music.pause()
 					#pygame.mixer.music.fadeout(music_fadeout_time)
 					round_start_effect.play()
-					game_state = 1
+					changeState(1)
+					###game_state = 1
 					round_time = random.randint(2,6)
 					round_start_time = time.time()
 				elif event.key == K_SPACE and game_state in [3,4,5]:
@@ -288,7 +291,8 @@ def main():
 				penalty["player"] = get_winner(cur_input)
 				if "count" in penalty:
 					penalty["count"] += 1
-					game_state = 4
+					changeState(4)
+					###game_state = 4
 				else:
 					penalty["count"] = 1
 
@@ -296,16 +300,19 @@ def main():
 			if cur_elapsed > round_time:
 				round_start_effect.stop()
 				effect.play()
-				game_state = 2
+				changeState(2)
+				###game_state = 2
 				round_start_time = time.time()
 				music_is_on = False
 		elif game_state is 2:
 			cur_elapsed = time.time() - round_start_time
 			if cur_elapsed > round_timeout:
-				game_state = 5
+				changeState(5)
+				###game_state = 5
 			render_fire(time.time() - round_start_time)
 			if get_winner(cur_input) != -1:
-				game_state = 3
+				changeState(3)
+				###game_state = 3
 				game_win["player"] = get_winner(cur_input)
 				game_win["time"] = time.time() - round_start_time
 		elif game_state is 3:
