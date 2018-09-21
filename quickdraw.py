@@ -284,11 +284,13 @@ def main():
 					winner = {}
 					music_is_on = True
 					pygame.mixer.music.unpause()
+
 		if game_state is 0:
 			gamestart()
 			if not music_is_on:
 				music_is_on = True
 				pygame.mixer.music.play()
+
 		elif game_state is 1:
 			render_round_start()
 			cur_elapsed = time.time() - round_start_time
@@ -297,6 +299,7 @@ def main():
 				if "count" in penalty:
 					penalty["count"] += 1
 					game_state = 4
+					menu_timeout = time.time()
 				else:
 					penalty["count"] = 1
 
@@ -308,6 +311,7 @@ def main():
 				draw_sound.play()
 				round_start_time = time.time()
 				music_is_on = False
+
 		elif game_state is 2:
 			cur_elapsed = time.time() - round_start_time
 			if cur_elapsed > round_timeout:
@@ -320,12 +324,26 @@ def main():
 					game_state = 6
 				else:
 					game_state = 3
+				menu_timeout = time.time()
 				game_win["player"] = get_winner(cur_input)
 				game_win["time"] = time.time() - round_start_time
+
 		elif game_state in [3,6]:
 			player_win(game_win["player"],game_win["time"])
+			#start the timer to go back to the start screen
+			cur_elapsed = time.time() - menu_timeout
+			if cur_elapsed > round_timeout:
+				#go back to the start screen
+				game_state = 0
+
 		elif game_state is 4:
 			render_penalty(penalty["player"],penalty["count"],game_state,texts)
+			#start the timer to go back to the start screen
+			cur_elapsed = time.time() - menu_timeout
+			if cur_elapsed > round_timeout:
+				#go back to the start screen
+				game_state = 0
+
 		elif game_state is 5:
 			#start the timer to go back to the start screen
 			cur_elapsed = time.time() - menu_timeout
