@@ -335,6 +335,7 @@ def main():
 			if cur_elapsed > round_timeout:
 				#go back to the start screen
 				game_state = 0
+				unpause_music()
 
 		elif game_state is 4:
 			render_penalty(penalty["player"],penalty["count"],game_state,texts)
@@ -343,6 +344,7 @@ def main():
 			if cur_elapsed > round_timeout:
 				#go back to the start screen
 				game_state = 0
+				unpause_music()
 
 		elif game_state is 5:
 			#start the timer to go back to the start screen
@@ -350,6 +352,7 @@ def main():
 			if cur_elapsed > round_timeout:
 				#go back to the start screen
 				game_state = 0
+				unpause_music()
 
 		
 
