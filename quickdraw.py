@@ -77,8 +77,9 @@ draw_sound = pygame.mixer.Sound('../audio/draw.wav')
 timeout_sound = pygame.mixer.Sound('../audio/youdone.wav')
 
 reset_idx = 5
-round_min = 8
-round_max = 16
+round_min = 4
+round_max = 11
+clint_start = 120
 
 round_start = False
 round_start_time = 0
@@ -230,7 +231,7 @@ def main():
 				game_state = 1
 
 				#reset clint for his slow travel
-				foregrounds[1].pos_x = 30
+				foregrounds[1].pos_x = clint_start
 
 				round_time = random.randint(round_min, round_max)
 				round_start_time = time.time()
@@ -254,7 +255,7 @@ def main():
 					game_state = 1
 					
 					#reset clint for his slow travel
-					foregrounds[1].pos_x = 30
+					foregrounds[1].pos_x = clint_start
 
 					round_time = random.randint(round_min,round_max)
 					round_start_time = time.time()
