@@ -250,8 +250,7 @@ def main():
 				if event.key == K_ESCAPE:
 					quit_game()
 				elif event.key == K_SPACE and game_state is 0:
-					pause_music()
-					#pygame.mixer.music.pause()
+					pygame.mixer.music.pause()
 					#pygame.mixer.music.fadeout(music_fadeout_time)
 					round_start_effect.play()					
 					game_state = 1
@@ -268,14 +267,14 @@ def main():
 					penalty = {}
 					winner = {}
 					music_is_on = True
-					#pygame.mixer.music.unpause()
+					pygame.mixer.music.unpause()
 					unpause_music()
 
 		if game_state is 0:
 			gamestart()
 			if not music_is_on:
 				music_is_on = True
-				pygame.mixer.music.play(musicpos)
+				pygame.mixer.music.play()
 
 		elif game_state is 1:
 			render_round_start()
@@ -299,7 +298,7 @@ def main():
 				game_state = 2
 				draw_sound.play()
 				round_start_time = time.time()
-				#music_is_on = False
+				music_is_on = False
 
 		elif game_state is 2:
 			cur_elapsed = time.time() - round_start_time
