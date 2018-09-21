@@ -218,6 +218,7 @@ texts = [None, None, None, None,  TextField("penalty", "test", 350, 60, True), N
 def main():
 	round_time = 0
 	round_start_time = 0
+	menu_timeout = 0
 	
 
 	game_state = 0 #flag for game state
@@ -310,6 +311,7 @@ def main():
 		elif game_state is 2:
 			cur_elapsed = time.time() - round_start_time
 			if cur_elapsed > round_timeout:
+				menu_timeout = time.time()
 				game_state = 5
 				timeout_sound.play()
 			render_fire(time.time() - round_start_time)
@@ -324,6 +326,12 @@ def main():
 			player_win(game_win["player"],game_win["time"])
 		elif game_state is 4:
 			render_penalty(penalty["player"],penalty["count"],game_state,texts)
+		elif game_state is 5:
+			#start the timer to go back to the start screen
+			cur_elapsed = time.time() - menu_timeout
+			if cur_elapsed > round_timeout):
+				#go back to the start screen
+				game_state = 0
 
 		
 
