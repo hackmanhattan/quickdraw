@@ -329,7 +329,7 @@ def main():
 		elif game_state is 5:
 			#start the timer to go back to the start screen
 			cur_elapsed = time.time() - menu_timeout
-			if cur_elapsed > round_timeout):
+			if cur_elapsed > round_timeout:
 				#go back to the start screen
 				game_state = 0
 
