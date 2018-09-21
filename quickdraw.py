@@ -256,7 +256,7 @@ def main():
 					#reset clint for his slow travel
 					foregrounds[1].pos_x = 10
 
-					round_time = random.randint(2,6)
+					round_time = random.randint(round_min,round_max)
 					round_start_time = time.time()
 				elif event.key == K_SPACE and game_state in [3,4,5,6]:
 					# winner to new game
