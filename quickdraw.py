@@ -152,7 +152,7 @@ def render_fire(time_elapsed):
 	###pygame.display.update()
 
 def render_penalty(tgtplayer,count):
-	textb = "Player " + str(count)
+	textb = "Player " + str(tgtplayer)
 	textb = basicfont.render(textb, True, color_font)
 	textbrect = textb.get_rect()
 	textbrect.centerx = screen.get_rect().centerx + 350
