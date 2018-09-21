@@ -20,6 +20,7 @@ class Drawable:
 	def draw(self, screen):
 		if (self.drawable):
 			screen.blit(self.image, (self.pos_x, self.pos_y))
+			pygame.display.update()
 
 class TextField:
 	def __init__(self, name, text, pos_x, pos_y, draw):
@@ -32,6 +33,7 @@ class TextField:
 	def draw(self, screen):
 		if (self.drawable):
 			screen.blit(self.image, (self.pos_x, self.pos_y))
+			pygame.display.update()
 
 
 SPI_PORT = 0
@@ -266,6 +268,7 @@ def main():
 	while True:
 
 		#Render all the drawables on a new screen
+		backgrounds[0].draw()
 		screen.fill((255,255,255))
 		for drawable in backgrounds:
 			drawable.draw(screen)
