@@ -315,9 +315,9 @@ def main():
 			render_fire(time.time() - round_start_time)
 			if get_winner(cur_input) != -1:
 				if get_winner == 0:
-					game_state = 3
-				else:
 					game_state = 6
+				else:
+					game_state = 3
 				game_win["player"] = get_winner(cur_input)
 				game_win["time"] = time.time() - round_start_time
 		elif game_state is 3:
