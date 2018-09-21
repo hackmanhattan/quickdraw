@@ -59,6 +59,7 @@ screen = pygame.display.set_mode(size, FULLSCREEN)
 signal_reads = 10
 clock = pygame.time.Clock()
 screen.fill((255, 255, 255))
+pygame.mouse.set_visible(False)
 
 basicfont = pygame.font.SysFont(None, 72)
 
