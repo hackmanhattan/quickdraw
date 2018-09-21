@@ -212,28 +212,15 @@ def render_round_start():
 	###pygame.display.update()
 
 def player_win(tgtplayer,tgttime):
-	tgtstr = 'Player ' + str(tgtplayer) + ' WINS'
-	cur_text = basicfont.render(tgtstr, True, color_font,color_bg)
-	cur_textrect = cur_text.get_rect()
-	cur_textrect.centerx = screen.get_rect().centerx
-	cur_textrect.centery = screen.get_rect().centery - 100
 
 	result = "Time elapsed " + str(tgttime) + " seconds"
 	text_time = basicfont.render(result, True, color_font,color_bg)
 	text_time_rect = text_time.get_rect()
-	text_time_rect.centerx = screen.get_rect().centerx
-	text_time_rect.centery = screen.get_rect().centery
+	text_time_rect.centerx = screen.get_rect().centerx + 200
+	text_time_rect.centery = screen.get_rect().centery + 300
 
-	textc = 'Press SPACE to continue.'
-	textc = basicfont.render(textc, True, color_font, color_bg)
-	textrectc = textc.get_rect()
-	textrectc.centerx = screen.get_rect().centerx
-	textrectc.centery = screen.get_rect().centery + 100
-
-	screen.fill((255, 255, 255))
-	screen.blit(cur_text, cur_textrect)
 	screen.blit(text_time, text_time_rect)
-	screen.blit(textc, textrectc)
+	
 	pygame.display.update()
 
 def gun_picked_up(values):
