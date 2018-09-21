@@ -159,7 +159,7 @@ def render_penalty(tgtplayer,count,game_state,texts):
 
 	screen.blit(textb,textbrect)
 
-	texts[game_state] = Drawable("penalty", textb, 350, 60, True)
+	texts[game_state].text = textb
 
 	pygame.display.update()
 
@@ -214,7 +214,7 @@ def changeState(state):
 def main():
 	round_time = 0
 	round_start_time = 0
-	texts = [None] * 8
+	texts = [None, None, None, None,  Drawable("penalty", "test", 350, 60, True), None, None]
 
 	game_state = 0 #flag for game state
 	
