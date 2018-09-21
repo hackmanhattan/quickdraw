@@ -230,7 +230,7 @@ def main():
 				game_state = 1
 
 				#reset clint for his slow travel
-				foregrounds[1].pos_x = 10
+				foregrounds[1].pos_x = 30
 
 				round_time = random.randint(round_min, round_max)
 				round_start_time = time.time()
@@ -254,7 +254,7 @@ def main():
 					game_state = 1
 					
 					#reset clint for his slow travel
-					foregrounds[1].pos_x = 10
+					foregrounds[1].pos_x = 30
 
 					round_time = random.randint(round_min,round_max)
 					round_start_time = time.time()
