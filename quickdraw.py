@@ -46,7 +46,6 @@ SPI_DEVICE = 0
 
 backgrounds = []
 foregrounds = []
-texts = [None] * 8
 
 mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
  
@@ -151,7 +150,7 @@ def render_fire(time_elapsed):
 	###screen.blit(draw_screen, (0,0))
 	###pygame.display.update()
 
-def render_penalty(tgtplayer,count,game_state):
+def render_penalty(tgtplayer,count,game_state,texts):
 	textb = "Player " + str(tgtplayer)
 	textb = basicfont.render(textb, True, color_font)
 	textbrect = textb.get_rect()
@@ -215,6 +214,7 @@ def changeState(state):
 def main():
 	round_time = 0
 	round_start_time = 0
+	texts = [None] * 8
 
 	game_state = 0 #flag for game state
 	
@@ -316,7 +316,7 @@ def main():
 		elif game_state is 3:
 			player_win(game_win["player"],game_win["time"])
 		elif game_state is 4:
-			render_penalty(penalty["player"],penalty["count"],game_state)
+			render_penalty(penalty["player"],penalty["count"],game_state,texts)
 		
 
 main()
