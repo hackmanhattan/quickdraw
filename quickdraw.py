@@ -95,7 +95,7 @@ draw_screen = pygame.image.load('quickdraw_draw.jpg')
 # 0 game initialized
 backgrounds.append(Drawable("background_title", "quickdraw_title_b.jpg", 0,0, True ))
 # 1 round started
-backgrounds.append(Drawable("background_wait", "quickdraw_wait.jpg", 0,0, True ))
+backgrounds.append(Drawable("background_wait", "screen_bg.jpg", 0,0, True ))
 # 2 ready for fire
 backgrounds.append(Drawable("background_draw", "quickdraw_draw.jpg", 0,0, True ))
 # 3 winner 
