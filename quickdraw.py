@@ -320,10 +320,11 @@ def main():
 					game_state = 3
 				game_win["player"] = get_winner(cur_input)
 				game_win["time"] = time.time() - round_start_time
-		elif game_state is 3:
+		elif game_state in [3,6]:
 			player_win(game_win["player"],game_win["time"])
 		elif game_state is 4:
 			render_penalty(penalty["player"],penalty["count"],game_state,texts)
+
 		
 
 main()
