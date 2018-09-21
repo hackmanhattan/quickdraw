@@ -278,7 +278,7 @@ def main():
 			cur_elapsed = time.time() - round_start_time
 
 			#move clint across the screen slowly
-			foregrounds[1].pos_x += cur_elapsed
+			foregrounds[1].pos_x += 1
 			if gun_picked_up(cur_input) != -1:
 				penalty["player"] = gun_picked_up(cur_input)
 				if "count" in penalty:
