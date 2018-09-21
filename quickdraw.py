@@ -77,8 +77,8 @@ draw_sound = pygame.mixer.Sound('../audio/draw.wav')
 timeout_sound = pygame.mixer.Sound('../audio/youdone.wav')
 
 reset_idx = 5
-round_min = 4
-round_max = 8
+round_min = 8
+round_max = 16
 
 round_start = False
 round_start_time = 0
