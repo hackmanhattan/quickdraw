@@ -143,40 +143,13 @@ def space_pressed(values):
 
 def gamestart():
 	return True
-	###screen.blit(titlescreen,(0,0))
-	###pygame.display.update()
 
 def render_fire(time_elapsed):
 	return True
-	###screen.fill(color_bg)
-	###screen.blit(draw_screen, (0,0))
-	###pygame.display.update()
 
 def render_penalty(tgtplayer,count,game_state,texts):
-	#textb = "Player " + str(tgtplayer)
-	#textb = basicfont.render(textb, True, color_font)
-	#textbrect = textb.get_rect()
-	#textbrect.centerx = screen.get_rect().centerx + 350
-	#textbrect.centery = screen.get_rect().centery - 60
-
-	#screen.blit(textb,textbrect)
-
-	texts[game_state].text = "Player " + str(tgtplayer)
-	#print(texts[game_state].text)
-
-	#pygame.display.update()
-
-def render_timeout():
-	texta = "No Winner!"
-	texta = basicfont.render(texta,True,color_font)
-	textrecta = texta.get_rect()
-	textrecta.centerx = screen.get_rect().centerx
-	textrecta.centery = screen.get_rect().centery
-
-	#screen.fill(color_bg)
-	#screen.blit(texta,textrecta)
-	pygame.display.update()
-
+	texts[game_state].text = "Player " + str(tgtplayer+1)
+	
 
 def quit_game():
 	pygame.quit()
@@ -184,22 +157,11 @@ def quit_game():
 
 def render_round_start():
 	return True
-	###screen.blit(wait_screen,(0,0))
-	###pygame.display.update()
 
 def player_win(tgtplayer,tgttime,game_state,texts):
-
 	result = "Time elapsed " + str(tgttime) + " seconds"
-
 	texts[game_state].text = result
-	#text_time = basicfont.render(result, True, color_font)
-	#text_time_rect = text_time.get_rect()
-	#text_time_rect.centerx = screen.get_rect().centerx + 200
-	#text_time_rect.centery = screen.get_rect().centery + 400
-
-	#screen.blit(text_time, text_time_rect)
 	
-	#pygame.display.update()
 
 def gun_picked_up(values):
 	for i in range(2):
