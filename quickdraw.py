@@ -272,7 +272,7 @@ def main():
 		#for drawable in backgrounds:
 		#	drawable.draw(screen)
 
-		backgrounds[game_state].draw()
+		backgrounds[game_state].draw(screen)
 
 		cur_input = readadc()
 		#print(cur_input)
