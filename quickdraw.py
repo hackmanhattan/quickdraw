@@ -151,7 +151,7 @@ def render_fire(time_elapsed):
 	###screen.blit(draw_screen, (0,0))
 	###pygame.display.update()
 
-def render_penalty(tgtplayer,count):
+def render_penalty(tgtplayer,count,game_state):
 	textb = "Player " + str(tgtplayer)
 	textb = basicfont.render(textb, True, color_font)
 	textbrect = textb.get_rect()
@@ -159,6 +159,8 @@ def render_penalty(tgtplayer,count):
 	textbrect.centery = screen.get_rect().centery - 60
 
 	screen.blit(textb,textbrect)
+
+	texts[game_state] = Drawable("penalty", textb, 350, 60, True)
 
 	pygame.display.update()
 
@@ -286,7 +288,7 @@ def main():
 			render_round_start()
 			cur_elapsed = time.time() - round_start_time
 			if gun_picked_up(cur_input) != -1:
-				penalty["player"] = get_winner(cur_input)
+				penalty["player"] = gun_picked_up(cur_input)
 				if "count" in penalty:
 					penalty["count"] += 1
 					game_state = 4
@@ -314,7 +316,7 @@ def main():
 		elif game_state is 3:
 			player_win(game_win["player"],game_win["time"])
 		elif game_state is 4:
-			render_penalty(penalty["player"],penalty["count"])
+			render_penalty(penalty["player"],penalty["count"],game_state)
 		
 
 main()
