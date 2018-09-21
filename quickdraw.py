@@ -202,7 +202,7 @@ def main():
 	# start music
 	music_is_on = False
 
-	texts = [None, None, None, TextField("p2win", "test", 200, 400, True),  TextField("penalty", "test", 350, -60, True), None, None]
+	texts = [None, None, None, TextField("p2win", "test", 200, 400, True),  TextField("penalty", "test", 350, -60, True), None, TextField("p1win", "test", 200, 400, True)]
 
 	while True:
 
