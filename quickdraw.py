@@ -104,6 +104,8 @@ backgrounds.append(Drawable("background_p2win", "quickdraw_p2win.jpg", 0,0, True
 backgrounds.append(Drawable("background_penalty", "quickdraw_penalty.jpg", 0,0, True ))
 # 5 timeout
 backgrounds.append(Drawable("background_timeout", "quickdraw_timeout.jpg", 0,0, True ))
+# 6 player1 winner
+backgrounds.append(Drawable("background_p1win", "quickdraw_p1win.jpg", 0,0, True ))
 
 
 musicpos = 0
@@ -253,7 +255,7 @@ def main():
 				game_state = 1
 				round_time = random.randint(round_min, round_max)
 				round_start_time = time.time()
-			elif game_state in [3,4,5]:
+			elif game_state in [3,4,5,6]:
 				game_state = 0
 				penalty = {}
 				winner = {}
@@ -273,7 +275,7 @@ def main():
 					game_state = 1
 					round_time = random.randint(2,6)
 					round_start_time = time.time()
-				elif event.key == K_SPACE and game_state in [3,4,5]:
+				elif event.key == K_SPACE and game_state in [3,4,5,6]:
 					# winner to new game
 					game_state = 0
 					# reset penalty and winner
@@ -312,7 +314,10 @@ def main():
 				timeout_sound.play()
 			render_fire(time.time() - round_start_time)
 			if get_winner(cur_input) != -1:
-				game_state = 3
+				if get_winner == 0:
+					game_state = 3
+				else:
+					game_state = 6
 				game_win["player"] = get_winner(cur_input)
 				game_win["time"] = time.time() - round_start_time
 		elif game_state is 3:
