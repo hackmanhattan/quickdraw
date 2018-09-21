@@ -45,7 +45,7 @@ SPI_PORT = 0
 SPI_DEVICE = 0
 
 backgrounds = []
-foregrounds = [None, Drawable("background_wait", "clint.png", 0,0, True ), None, None, None, None, None]
+foregrounds = [None, Drawable("background_wait", "clint.png", 0,150, True ), None, None, None, None, None]
 
 mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
  
@@ -228,6 +228,10 @@ def main():
 				pause_music()
 				round_start_effect.play()
 				game_state = 1
+
+				#reset clint for his slow travel
+				foregrounds[1].pos_x = 10
+
 				round_time = random.randint(round_min, round_max)
 				round_start_time = time.time()
 			elif game_state in [3,4,5,6]:
@@ -248,6 +252,10 @@ def main():
 					#pygame.mixer.music.fadeout(music_fadeout_time)
 					round_start_effect.play()					
 					game_state = 1
+					
+					#reset clint for his slow travel
+					foregrounds[1].pos_x = 10
+
 					round_time = random.randint(2,6)
 					round_start_time = time.time()
 				elif event.key == K_SPACE and game_state in [3,4,5,6]:
@@ -268,6 +276,9 @@ def main():
 		elif game_state is 1:
 			render_round_start()
 			cur_elapsed = time.time() - round_start_time
+
+			#move clint across the screen slowly
+			foregrounds[1].pos_x += cur_elapsed
 			if gun_picked_up(cur_input) != -1:
 				penalty["player"] = gun_picked_up(cur_input)
 				if "count" in penalty:
