@@ -79,7 +79,7 @@ timeout_sound = pygame.mixer.Sound('../audio/youdone.wav')
 reset_idx = 5
 round_min = 4
 round_max = 11
-clint_start = 120
+clint_start = 250
 
 round_start = False
 round_start_time = 0
