@@ -210,7 +210,9 @@ def main():
 		#	drawable.draw(screen)
 
 		backgrounds[game_state].draw(screen)
-		foregrounds[game_state].draw(screen)
+
+		if foregrounds[game_state]:
+			foregrounds[game_state].draw(screen)
 
 		if texts[game_state]:
 			texts[game_state].draw(screen)
