@@ -269,7 +269,7 @@ def main():
 					winner = {}
 					music_is_on = True
 					#pygame.mixer.music.unpause()
-					unpause_music
+					unpause_music()
 
 		if game_state is 0:
 			gamestart()
