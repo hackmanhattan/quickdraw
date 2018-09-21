@@ -234,7 +234,9 @@ def main():
 		#	drawable.draw(screen)
 
 		backgrounds[game_state].draw(screen)
-		texts[game_state].draw(screen)
+
+		if texts[game_state]:
+			texts[game_state].draw(screen)
 
 		cur_input = readadc()
 		#print(cur_input)
