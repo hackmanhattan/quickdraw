@@ -69,6 +69,8 @@ pygame.mixer.music.load("../audio/bg.mp3")
 # effects definition
 effect = pygame.mixer.Sound('../audio/Zen_Buddhist_Temple_Bell-SoundBible.com-331362457.wav')
 round_start_effect = pygame.mixer.Sound('../audio/goodbadugly-whistle-long.wav')
+draw_sound = pygame.mixer.Sound('../audio/draw.wav')
+timeout_sound = pygame.mixer.Sound('../audio/youdone.wav')
 
 reset_idx = 5
 round_min = 4
@@ -337,6 +339,7 @@ def main():
 				round_start_time = time.time()
 				music_is_on = False
 		elif game_state is 2:
+			draw_sound.play()
 			cur_elapsed = time.time() - round_start_time
 			if cur_elapsed > round_timeout:
 				game_state = 5
@@ -349,6 +352,8 @@ def main():
 			player_win(game_win["player"],game_win["time"])
 		elif game_state is 4:
 			render_penalty(penalty["player"],penalty["count"])
+		elif game_state is 5:
+			timeout_sound.play()
 		
 
 main()
