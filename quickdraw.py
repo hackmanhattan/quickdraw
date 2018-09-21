@@ -147,28 +147,16 @@ def render_fire(time_elapsed):
 	###pygame.display.update()
 
 def render_penalty(tgtplayer,count):
-	cur_text = "PENALTY FOR " + str(tgtplayer)
-	cur_text = basicfont.render(cur_text, True, color_font, color_bg)
-	cur_textrect = cur_text.get_rect()
-	cur_textrect.centerx = screen.get_rect().centerx
-	cur_textrect.centery = screen.get_rect().centery-100
+	
 
-	textb = str(count) + " foul"
+	textb = "Player " + str(count)
 	textb = basicfont.render(textb, True, color_font, color_bg)
 	textbrect = textb.get_rect()
 	textbrect.centerx = screen.get_rect().centerx
 	textbrect.centery = screen.get_rect().centery
-	screen.fill(color_bg)
 
-	textc = 'Press SPACE to continue.'
-	textc = basicfont.render(textc, True, color_font, color_bg)
-	textrectc = textc.get_rect()
-	textrectc.centerx = screen.get_rect().centerx
-	textrectc.centery = screen.get_rect().centery + 100
-
-	screen.blit(cur_text, cur_textrect)
 	screen.blit(textb,textbrect)
-	screen.blit(textc,textrectc)
+
 	pygame.display.update()
 
 def render_timeout():
@@ -187,25 +175,6 @@ def quit_game():
 	pygame.quit()
 	sys.exit()
 
-
-def player_win(tgtplayer,tgttime):
-        tgtstr = 'NO WINNER'
-        cur_text = basicfont.render(tgtstr, True, color_font,color_bg)
-        cur_textrect = cur_text.get_rect()
-        cur_textrect.centerx = screen.get_rect().centerx
-        cur_textrect.centery = screen.get_rect().centery - 100
-        textc = 'Press SPACE to continue.'
-        textc = basicfont.render(textc, True, color_font, color_bg)
-        textrectc = textc.get_rect()
-        textrectc.centerx = screen.get_rect().centerx
-        textrectc.centery = screen.get_rect().centery + 100
-
-        screen.fill((255, 255, 255))
-        screen.blit(cur_text, cur_textrect)
-        screen.blit(textc, textrectc)
-	pygame.display.update()
-
-
 def render_round_start():
 	return True
 	###screen.blit(wait_screen,(0,0))
@@ -214,10 +183,10 @@ def render_round_start():
 def player_win(tgtplayer,tgttime):
 
 	result = "Time elapsed " + str(tgttime) + " seconds"
-	text_time = basicfont.render(result, True, color_font,color_bg)
+	text_time = basicfont.render(result, True, color_font)
 	text_time_rect = text_time.get_rect()
 	text_time_rect.centerx = screen.get_rect().centerx + 200
-	text_time_rect.centery = screen.get_rect().centery + 300
+	text_time_rect.centery = screen.get_rect().centery + 400
 
 	screen.blit(text_time, text_time_rect)
 	
