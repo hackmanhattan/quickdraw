@@ -187,17 +187,19 @@ def render_round_start():
 	###screen.blit(wait_screen,(0,0))
 	###pygame.display.update()
 
-def player_win(tgtplayer,tgttime):
+def player_win(tgtplayer,tgttime,game_state,texts):
 
 	result = "Time elapsed " + str(tgttime) + " seconds"
-	text_time = basicfont.render(result, True, color_font)
-	text_time_rect = text_time.get_rect()
-	text_time_rect.centerx = screen.get_rect().centerx + 200
-	text_time_rect.centery = screen.get_rect().centery + 400
 
-	screen.blit(text_time, text_time_rect)
+	texts[game_state].text = result
+	#text_time = basicfont.render(result, True, color_font)
+	#text_time_rect = text_time.get_rect()
+	#text_time_rect.centerx = screen.get_rect().centerx + 200
+	#text_time_rect.centery = screen.get_rect().centery + 400
+
+	#screen.blit(text_time, text_time_rect)
 	
-	pygame.display.update()
+	#pygame.display.update()
 
 def gun_picked_up(values):
 	for i in range(2):
@@ -227,15 +229,16 @@ def main():
 	# 0 game initialized
 	# 1 round started
 	# 2 ready for fire
-	# 3 winner 
+	# 3 player 2 winner 
 	# 4 penalty
 	# 5 timeout
+	# 6 player 1 winner
 	game_win = {}
 	penalty = {}
 	# start music
 	music_is_on = False
 
-	texts = [None, None, None, None,  TextField("penalty", "test", 350, 60, True), None, None]
+	texts = [None, None, None, TextField("p2win", "test", 200, 400, True),  TextField("penalty", "test", 350, -60, True), None, None]
 
 	while True:
 
@@ -335,7 +338,7 @@ def main():
 				game_win["time"] = time.time() - round_start_time
 
 		elif game_state in [3,6]:
-			player_win(game_win["player"],game_win["time"])
+			player_win(game_win["player"],game_win["time"],game_state,texts)
 			#start the timer to go back to the start screen
 			cur_elapsed = time.time() - menu_timeout
 			if cur_elapsed > round_timeout:
