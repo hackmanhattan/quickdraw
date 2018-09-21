@@ -20,7 +20,6 @@ class Drawable:
 	def draw(self, screen):
 		if (self.drawable):
 			screen.blit(self.image, (self.pos_x, self.pos_y))
-			pygame.display.update()
 
 class TextField:
 	def __init__(self, name, text, pos_x, pos_y, draw):
@@ -37,8 +36,6 @@ class TextField:
 			textrecta = texta.get_rect()
 			textrecta.centerx = screen.get_rect().centerx + self.pos_x
 			textrecta.centery = screen.get_rect().centery + self.pos_y
-
-			pygame.display.update()
 
 
 SPI_PORT = 0
@@ -245,6 +242,8 @@ def main():
 		if texts[game_state]:
 			texts[game_state].draw(screen)
 
+		
+
 		cur_input = readadc()
 		#print(cur_input)
 		if space_pressed(cur_input):
@@ -353,6 +352,8 @@ def main():
 				#go back to the start screen
 				game_state = 0
 				unpause_music()
+				
+	pygame.display.update()
 
 		
 
