@@ -214,7 +214,7 @@ def changeState(state):
 def main():
 	round_time = 0
 	round_start_time = 0
-	texts = [None, None, None, None,  Drawable("penalty", "test", 350, 60, True), None, None]
+	texts = [None, None, None, None,  TextField("penalty", "test", 350, 60, True), None, None]
 
 	game_state = 0 #flag for game state
 	
