@@ -279,7 +279,8 @@ def main():
 		if space_pressed(cur_input):
 			if game_state is 0:
 				#pygame.mixer.music.fadeout(music_fadeout_time)
-				pygame.mixer.music.pause()
+				#pygame.mixer.music.pause()
+				pause_music()
 				round_start_effect.play()
 				game_state = 1
 				round_time = random.randint(round_min, round_max)
@@ -289,7 +290,8 @@ def main():
 				penalty = {}
 				winner = {}
 				music_is_on = True
-                                pygame.mixer.music.unpause()
+				#pygame.mixer.music.unpause()
+				unpause_music()
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				quit_game()
