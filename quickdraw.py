@@ -176,8 +176,8 @@ def render_timeout():
 	textrecta.centerx = screen.get_rect().centerx
 	textrecta.centery = screen.get_rect().centery
 
-	screen.fill(color_bg)
-	screen.blit(texta,textrecta)
+	#screen.fill(color_bg)
+	#screen.blit(texta,textrecta)
 	pygame.display.update()
 
 
@@ -347,7 +347,6 @@ def main():
 			player_win(game_win["player"],game_win["time"])
 		elif game_state is 4:
 			render_penalty(penalty["player"],penalty["count"])
-		elif game_state is 5:
-			render_timeout()
+		
 
 main()
