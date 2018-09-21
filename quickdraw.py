@@ -89,15 +89,15 @@ draw_screen = pygame.image.load('quickdraw_draw.jpg')
 # 0 game initialized
 backgrounds.append(Drawable("background_title", "quickdraw_title_b.jpg", 0,0, True ))
 # 1 round started
-backgrounds.append(Drawable("background_wait", "quickdraw_wait.jpg", 0,0, False ))
+backgrounds.append(Drawable("background_wait", "quickdraw_wait.jpg", 0,0, True ))
 # 2 ready for fire
-backgrounds.append(Drawable("background_draw", "quickdraw_draw.jpg", 0,0, False ))
+backgrounds.append(Drawable("background_draw", "quickdraw_draw.jpg", 0,0, True ))
 # 3 winner 
-backgrounds.append(Drawable("background_p2win", "quickdraw_p2win.jpg", 0,0, False ))
+backgrounds.append(Drawable("background_p2win", "quickdraw_p2win.jpg", 0,0, True ))
 # 4 penalty
-backgrounds.append(Drawable("background_penalty", "quickdraw_penalty.jpg", 0,0, False ))
+backgrounds.append(Drawable("background_penalty", "quickdraw_penalty.jpg", 0,0, True ))
 # 5 timeout
-backgrounds.append(Drawable("background_timeout", "quickdraw_timeout.jpg", 0,0, False ))
+backgrounds.append(Drawable("background_timeout", "quickdraw_timeout.jpg", 0,0, True ))
 
 
 musicpos = 0
@@ -269,8 +269,10 @@ def main():
 
 		#Render all the drawables on a new screen
 		screen.fill((255,255,255))
-		for drawable in backgrounds:
-			drawable.draw(screen)
+		#for drawable in backgrounds:
+		#	drawable.draw(screen)
+
+		backgrounds[game_state].draw()
 
 		cur_input = readadc()
 		#print(cur_input)
@@ -279,13 +281,11 @@ def main():
 				#pygame.mixer.music.fadeout(music_fadeout_time)
 				pygame.mixer.music.pause()
 				round_start_effect.play()
-				###game_state = 1
-				changeState(1)
+				game_state = 1
 				round_time = random.randint(round_min, round_max)
 				round_start_time = time.time()
 			elif game_state in [3,4,5]:
-				changeState(0)
-				###game_state = 0
+				game_state = 0
 				penalty = {}
 				winner = {}
 				music_is_on = True
@@ -299,9 +299,8 @@ def main():
 				elif event.key == K_SPACE and game_state is 0:
 					pygame.mixer.music.pause()
 					#pygame.mixer.music.fadeout(music_fadeout_time)
-					round_start_effect.play()
-					changeState(1)
-					###game_state = 1
+					round_start_effect.play()					
+					game_state = 1
 					round_time = random.randint(2,6)
 					round_start_time = time.time()
 				elif event.key == K_SPACE and game_state in [3,4,5]:
@@ -324,8 +323,7 @@ def main():
 				penalty["player"] = get_winner(cur_input)
 				if "count" in penalty:
 					penalty["count"] += 1
-					changeState(4)
-					###game_state = 4
+					game_state = 4
 				else:
 					penalty["count"] = 1
 
@@ -333,19 +331,16 @@ def main():
 			if cur_elapsed > round_time:
 				round_start_effect.stop()
 				effect.play()
-				changeState(2)
-				###game_state = 2
+				game_state = 2
 				round_start_time = time.time()
 				music_is_on = False
 		elif game_state is 2:
 			cur_elapsed = time.time() - round_start_time
 			if cur_elapsed > round_timeout:
-				changeState(5)
-				###game_state = 5
+				game_state = 5
 			render_fire(time.time() - round_start_time)
 			if get_winner(cur_input) != -1:
-				changeState(3)
-				###game_state = 3
+				game_state = 3
 				game_win["player"] = get_winner(cur_input)
 				game_win["time"] = time.time() - round_start_time
 		elif game_state is 3:
