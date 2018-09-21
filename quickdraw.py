@@ -45,7 +45,7 @@ SPI_PORT = 0
 SPI_DEVICE = 0
 
 backgrounds = []
-foregrounds = []
+foregrounds = [None, Drawable("background_wait", "clint.png", 0,0, True ), None, None, None, None, None]
 
 mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
  
@@ -210,6 +210,7 @@ def main():
 		#	drawable.draw(screen)
 
 		backgrounds[game_state].draw(screen)
+		foregrounds[game_state].draw(screen)
 
 		if texts[game_state]:
 			texts[game_state].draw(screen)
