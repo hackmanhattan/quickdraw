@@ -268,7 +268,6 @@ def main():
 	while True:
 
 		#Render all the drawables on a new screen
-		backgrounds[0].draw()
 		screen.fill((255,255,255))
 		for drawable in backgrounds:
 			drawable.draw(screen)
