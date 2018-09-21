@@ -20,7 +20,7 @@ class Drawable:
 	def draw(self, screen):
 		if (self.drawable):
 			screen.blit(self.image, (self.pos_x, self.pos_y))
-			pygame.display.update()
+			#pygame.display.update()
 
 class TextField:
 	def __init__(self, name, text, pos_x, pos_y, draw):
@@ -37,8 +37,8 @@ class TextField:
 			textrecta = texta.get_rect()
 			textrecta.centerx = screen.get_rect().centerx + self.pos_x
 			textrecta.centery = screen.get_rect().centery + self.pos_y
-
-			pygame.display.update()
+			screen.blit(texta,textrecta)
+			#pygame.display.update()
 
 
 SPI_PORT = 0
@@ -153,18 +153,18 @@ def render_fire(time_elapsed):
 	###pygame.display.update()
 
 def render_penalty(tgtplayer,count,game_state,texts):
-	textb = "Player " + str(tgtplayer)
-	textb = basicfont.render(textb, True, color_font)
-	textbrect = textb.get_rect()
-	textbrect.centerx = screen.get_rect().centerx + 350
-	textbrect.centery = screen.get_rect().centery - 60
+	#textb = "Player " + str(tgtplayer)
+	#textb = basicfont.render(textb, True, color_font)
+	#textbrect = textb.get_rect()
+	#textbrect.centerx = screen.get_rect().centerx + 350
+	#textbrect.centery = screen.get_rect().centery - 60
 
-	screen.blit(textb,textbrect)
+	#screen.blit(textb,textbrect)
 
-	#texts[game_state].text = str(textb)
+	texts[game_state].text = "Player " + str(tgtplayer)
 	#print(texts[game_state].text)
 
-	pygame.display.update()
+	#pygame.display.update()
 
 def render_timeout():
 	texta = "No Winner!"
@@ -248,6 +248,8 @@ def main():
 
 		if texts[game_state]:
 			texts[game_state].draw(screen)
+
+		pygame.display.update()
 
 		cur_input = readadc()
 		#print(cur_input)
