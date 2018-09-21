@@ -211,7 +211,7 @@ def changeState(state):
 		game_state = state
 		backgrounds[game_state].drawable = True
 
-texts = [None, None, None, None,  TextField("penalty", "test", 350, 60, True), None, None]
+texts = [None, None, None, None,  TextField("penalty", "test", 350, 60, True), TextField("penalty", "test", 350, 60, True), None]
 
 def main():
 	round_time = 0
