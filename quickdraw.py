@@ -46,7 +46,7 @@ SPI_DEVICE = 0
 
 backgrounds = []
 foregrounds = []
-texts = []
+texts = [None] * 8
 
 mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
  
