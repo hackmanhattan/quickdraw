@@ -32,7 +32,12 @@ class TextField:
 
 	def draw(self, screen):
 		if (self.drawable):
-			screen.blit(self.image, (self.pos_x, self.pos_y))
+			texta = basicfont.render(self.text,True, (0, 0, 0))
+
+			textrecta = texta.get_rect()
+			textrecta.centerx = screen.get_rect().centerx + self.pos_x
+			textrecta.centery = screen.get_rect().centery + self.pos_y
+
 			pygame.display.update()
 
 
@@ -147,13 +152,11 @@ def render_fire(time_elapsed):
 	###pygame.display.update()
 
 def render_penalty(tgtplayer,count):
-	
-
 	textb = "Player " + str(count)
-	textb = basicfont.render(textb, True, color_font, color_bg)
+	textb = basicfont.render(textb, True, color_font)
 	textbrect = textb.get_rect()
-	textbrect.centerx = screen.get_rect().centerx
-	textbrect.centery = screen.get_rect().centery
+	textbrect.centerx = screen.get_rect().centerx + 350
+	textbrect.centery = screen.get_rect().centery - 60
 
 	screen.blit(textb,textbrect)
 
@@ -161,7 +164,7 @@ def render_penalty(tgtplayer,count):
 
 def render_timeout():
 	texta = "No Winner!"
-	texta = basicfont.render(texta,True,color_font,color_bg)
+	texta = basicfont.render(texta,True,color_font)
 	textrecta = texta.get_rect()
 	textrecta.centerx = screen.get_rect().centerx
 	textrecta.centery = screen.get_rect().centery
@@ -231,6 +234,7 @@ def main():
 		#	drawable.draw(screen)
 
 		backgrounds[game_state].draw(screen)
+		texts[game_state].draw(screen)
 
 		cur_input = readadc()
 		#print(cur_input)
