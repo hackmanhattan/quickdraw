@@ -336,13 +336,14 @@ def main():
 				round_start_effect.stop()
 				effect.play()
 				game_state = 2
+				draw_sound.play()
 				round_start_time = time.time()
 				music_is_on = False
 		elif game_state is 2:
-			draw_sound.play()
 			cur_elapsed = time.time() - round_start_time
 			if cur_elapsed > round_timeout:
 				game_state = 5
+				timeout_sound.play()
 			render_fire(time.time() - round_start_time)
 			if get_winner(cur_input) != -1:
 				game_state = 3
@@ -352,8 +353,6 @@ def main():
 			player_win(game_win["player"],game_win["time"])
 		elif game_state is 4:
 			render_penalty(penalty["player"],penalty["count"])
-		elif game_state is 5:
-			timeout_sound.play()
 		
 
 main()
