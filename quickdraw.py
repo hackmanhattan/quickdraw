@@ -314,7 +314,7 @@ def main():
 				timeout_sound.play()
 			render_fire(time.time() - round_start_time)
 			if get_winner(cur_input) != -1:
-				if get_winner == 0:
+				if get_winner(cur_input) == 0:
 					game_state = 6
 				else:
 					game_state = 3
