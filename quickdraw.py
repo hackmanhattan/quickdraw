@@ -334,7 +334,7 @@ def main():
 			print(cur_elapsed,"time passed")
 			if cur_elapsed > round_time:
 				round_start_effect.stop()
-				effect.play()
+				#effect.play()
 				game_state = 2
 				draw_sound.play()
 				round_start_time = time.time()
