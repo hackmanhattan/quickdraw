@@ -56,7 +56,7 @@ size = [1600, 900]
 #size = [1280, 768]
 #screen = pygame.display.set_mode(size)
 screen = pygame.display.set_mode(size, FULLSCREEN) 
-signal_reads = 10
+signal_reads = 16
 clock = pygame.time.Clock()
 screen.fill((255, 255, 255))
 pygame.mouse.set_visible(False)
@@ -66,7 +66,7 @@ basicfont = pygame.font.SysFont(None, 72)
 color_font = (0, 0, 0)
 color_bg = (255,255,255)
 
-piezo_min = 50
+piezo_min = [0,0,47,20,0,0,0,0,0,0]
 
 # music definition
 pygame.mixer.music.load("../audio/bg.mp3")
@@ -131,12 +131,12 @@ def readadc():
 def get_winner(values):
 	# TODO: should read for targets
 	for i in range(2,4):
-		if values[i] > piezo_min:
+		if values[i] > piezo_min[i]:
 			return i-2
 	return -1
 
 def space_pressed(values):
-	print("yo",values)
+	#print("yo",values)
 	if values[reset_idx] >= 1022:
 		print("space_pressed")
 		time.sleep(0.25)
@@ -151,7 +151,6 @@ def render_fire(time_elapsed):
 
 def render_penalty(tgtplayer,count,game_state,texts):
 	texts[game_state].text = "Player " + str(tgtplayer+1)
-	
 
 def quit_game():
 	pygame.quit()
@@ -226,8 +225,8 @@ def main():
 		if space_pressed(cur_input):
 			if game_state is 0:
 				#pygame.mixer.music.fadeout(music_fadeout_time)
-				#pygame.mixer.music.pause()
-				pause_music()
+				pygame.mixer.music.pause()
+				#pause_music()
 				round_start_effect.play()
 				game_state = 1
 
@@ -241,8 +240,8 @@ def main():
 				penalty = {}
 				winner = {}
 				music_is_on = True
-				#pygame.mixer.music.unpause()
-				unpause_music()
+				pygame.mixer.music.unpause()
+				#unpause_music()
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				quit_game()
@@ -322,7 +321,8 @@ def main():
 			if cur_elapsed > round_timeout:
 				#go back to the start screen
 				game_state = 0
-				unpause_music()
+				#unpause_music()
+				pygame.mixer.music.pause()
 
 		elif game_state is 4:
 			render_penalty(penalty["player"],penalty["count"],game_state,texts)
@@ -331,7 +331,9 @@ def main():
 			if cur_elapsed > round_timeout:
 				#go back to the start screen
 				game_state = 0
-				unpause_music()
+				#unpause_music()
+				pygame.mixer.music.pause()
+				
 
 		elif game_state is 5:
 			#start the timer to go back to the start screen
@@ -339,8 +341,7 @@ def main():
 			if cur_elapsed > round_timeout:
 				#go back to the start screen
 				game_state = 0
-				unpause_music()
-
-		
+				#unpause_music()
+				pygame.mixer.music.pause()
 
 main()
