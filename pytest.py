@@ -3,11 +3,11 @@ import pygame, sys
 from pygame.locals import *
 import random
 import time
-from lib import Drawable
+from common import Drawable
 from game_states import InitGame, StartRound, ReadyToFire, WinState, Penalty, Timeout
-from lib.Common import globalVars as gv
-from lib.Common import *
-from lib.Inputs import gameController as gc
+from common.Common import globalVars as gv
+from common.Common import *
+from common.Inputs import gameController as gc
  
 # define a main function
 def main():

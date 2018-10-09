@@ -1,8 +1,8 @@
 import pygame, sys
-from lib.Drawable import Image
-from lib.Common import globalVars as gv
-from lib.Common import *
-from lib.Inputs import gameController as gc
+from common.Drawable import Image
+from common.Common import globalVars as gv
+from common.Common import *
+from common.Inputs import gameController as gc
 import time
 import random
 
