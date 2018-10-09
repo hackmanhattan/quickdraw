@@ -1,5 +1,5 @@
 import pygame, sys
-from common.Drawable import Image
+from common.Drawable import Image, TextField
 from common.Common import globalVars as gv
 from common.Common import *
 from common.Inputs import gameController as gc
@@ -9,6 +9,7 @@ import random
 class Penalty:
 	def __init__(self):
 		self.background = Image("background_penalty", "quickdraw_penalty.jpg", 0,0, True )
+		self.text = TextField("penalty", "test", 350, -60, True)
 
 	def enter(self):
 		# TODO Kill the sound effect from wait here 
@@ -16,6 +17,9 @@ class Penalty:
     # Wait 30 seconds to switch to home screen
 		gv.round_time = 30
 		gv.round_start_time = time.time()
+
+		#Reveal the play who initiated a penalty
+		self.text.text = "Player " + str(gv.penalty)
 		
 
 	def processEvents(self):
@@ -32,6 +36,7 @@ class Penalty:
 
 	def draw(self):
 		self.background.draw(gv.screen)
+		self.text.draw(gv.screen)
     
 	def leave(self):
 		pass

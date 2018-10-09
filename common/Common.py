@@ -18,6 +18,8 @@ class globalVars():
   round_min = 4
   round_max = 11
   winner = 2
+  penalty = 0
+  basicfont = pygame.font.SysFont(None, 72)
 
   debug = True
 

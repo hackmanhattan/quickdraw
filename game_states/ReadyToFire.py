@@ -29,7 +29,7 @@ class ReadyToFire():
 
 		if gv.cur_elapsed > gv.round_time:
       # TODO Change state to timrout when created
-			changeState("TITLE_SCREEN_STATE")
+			changeState("TIMEOUT_STATE")
 
 	def draw(self):
 		self.background.draw(gv.screen)

@@ -2,6 +2,7 @@ import pygame, sys
 from common.Drawable import Image
 from common.Common import globalVars as gv
 from common.Common import *
+from common.Inputs import gameController as gc
 import time
 import random
 
@@ -21,7 +22,8 @@ class StartRound:
 		self.foreground.pos_x = 250
 
 	def processEvents(self):
-		pass
+		if (gc.checkHands()):
+			changeState("PENALTY_STATE")
 
 	def update(self):
 		global cur_elapsed
