@@ -15,16 +15,17 @@ class Image:
 			#pygame.display.update()
 
 class TextField:
-	def __init__(self, name, text, pos_x, pos_y, draw):
+	def __init__(self, name, text, pos_x, pos_y, draw, color=(0,0,0)):
 		self.name = name
 		self.text = text
 		self.pos_x = pos_x
 		self.pos_y = pos_y
 		self.drawable = draw
+		self.color = color
 
 	def draw(self, screen):
 		if (self.drawable):
-			texta = gv.basicFont.render(self.text,True, (0, 0, 0))
+			texta = gv.basicFont.render(self.text,True, self.color)
 
 			textrecta = texta.get_rect()
 			textrecta.centerx = screen.get_rect().centerx + self.pos_x

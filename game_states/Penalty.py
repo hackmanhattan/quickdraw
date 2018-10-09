@@ -9,7 +9,7 @@ import random
 class Penalty:
 	def __init__(self):
 		self.background = Image("background_penalty", "quickdraw_penalty.jpg", 0,0, True )
-		self.text = TextField("penalty", "test", 350, -60, True)
+		self.text = TextField("penalty", "test", 350, -60, True, color=(255,255,255))
 
 	def enter(self):
 		# TODO Kill the sound effect from wait here 

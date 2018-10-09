@@ -13,6 +13,9 @@ class InitGame:
     if not gv.musicIsOn:
       gv.musicIsOn = True
       gv.music.play()
+    #if any sounds are playing, stop them
+    pygame.mixer.stop()
+
     unpauseMusic()
 
   def processEvents(self):
