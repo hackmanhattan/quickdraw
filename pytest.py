@@ -8,6 +8,7 @@ from game_states import InitGame, StartRound, ReadyToFire, WinState, Penalty, Ti
 from common.Common import globalVars as gv
 from common.Common import *
 from common.Inputs import gameController as gc
+#mike semko helped
  
 # define a main function
 def main():

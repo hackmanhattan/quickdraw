@@ -6,7 +6,7 @@ from common.Inputs import gameController as gc
 
 class InitGame:
   def __init__(self):
-    self.background = Image("background_title", "quickdraw_title.jpg", 0,0, True )
+    self.background = Image("background_title", "quickdraw_title_b.jpg", 0,0, True )
 
   def enter(self):
     #Turn the music on if not playing, checks at beginning of init to make sure, unpauses when re-entering state

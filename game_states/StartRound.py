@@ -20,6 +20,10 @@ class StartRound:
 		gv.round_start_time = time.time()
 		#reset clint for his slow travel
 		self.foreground.pos_x = 250
+		self.background.pos_x = -50
+		self.background.pos_y = -45
+		scale = 1.1
+		self.background.image = pygame.transform.scale(self.background.image, (int(gv.screen_width * scale), int(gv.screen_height * scale)))
 
 	def processEvents(self):
 		if (gc.checkHands()):
@@ -28,7 +32,8 @@ class StartRound:
 	def update(self):
 		global cur_elapsed
 		gv.cur_elapsed = time.time() - gv.round_start_time
-		self.foreground.pos_x += 1
+		self.foreground.pos_x += .5
+		self.background.pos_x -= .25
 		if gv.cur_elapsed > gv.round_time:
 			changeState("READY_TO_FIRE_STATE")
 

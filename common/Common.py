@@ -22,8 +22,11 @@ class globalVars():
   basicfont = pygame.font.SysFont(None, 72)
 
   debug = True
+  screen_width = 1600
+  screen_height = 900
 
-  screen = pygame.display.set_mode((1600,900))
+
+  screen = pygame.display.set_mode((screen_width,screen_height))
   clock = pygame.time.Clock()
   music = pygame.mixer.music
 
