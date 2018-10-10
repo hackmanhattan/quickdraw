@@ -17,12 +17,13 @@ class InitGame:
     pygame.mixer.stop()
 
     unpauseMusic()
+    #self.background.animate(200, 200, 2000)
 
   def processEvents(self):
     #check if the ready button has been pressed and transit to the start state
     gc.checkReady(True, "START_ROUND_STATE")
 
-  def update(self):
+  def update(self, deltaTime):
     pass
 
   def draw(self):

@@ -1,4 +1,4 @@
-import pygame
+import pygame, math
 from common.Common import globalVars as gv
 
 class Image:

@@ -35,15 +35,25 @@ def main():
 	gv.currentState = gv.gameStates["TITLE_SCREEN_STATE"]
 	gv.currentState.enter()
 
+	#define deltatime
+	accumulated_delta_time = 0
+
 	# main loop
 	while running:
-			gv.clock.tick(30)
 			# event handling, gets all event from the eventqueue
 			gv.currentState.processEvents()
-			gv.currentState.update()
-			gv.currentState.draw()
 
+
+			#run the updates according to deltatime
+			while (accumulated_delta_time > gv.max_framerate):
+				gv.currentState.update(1/gv.max_framerate)
+				accumulated_delta_time -= (1/gv.max_framerate)
+			
+			accumulated_delta_time += gv.clock.tick()
+
+			gv.currentState.draw()
 			pygame.display.update()
+			
 			for event in pygame.event.get():
 					# only do something if the event is of type QUIT
 					if event.type == pygame.QUIT:

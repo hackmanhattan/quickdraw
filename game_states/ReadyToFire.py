@@ -23,7 +23,7 @@ class ReadyToFire():
 			changeState("WIN_STATE")
 
 
-	def update(self):
+	def update(self, deltaTime):
     #Increment the timer and exit to the timeout state after 30 seconds
 		gv.cur_elapsed = time.time() - gv.round_start_time
 
