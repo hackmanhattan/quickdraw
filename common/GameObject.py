@@ -1,0 +1,40 @@
+import pygame, math
+from common.Drawable import Image, TextField
+import common.AnimationController
+
+class GameObject:
+	def __init__(self, pos_x, pos_y, draw, image = None, text = None):
+		self.image = image
+		self.text = text
+		self.pos_x = pos_x
+		self.pos_y = pos_y
+		self.animations = []
+		self.drawable = draw
+		if self.image:
+			self.image.offsetX = self.pos_x
+			self.image.offsetY = self.pos_y
+
+	def update(self, deltaTime):
+		for animate in self.animations:
+			if animate.active:
+				animate.tick(deltaTime)
+				self.pos_x = animate.get_x()
+				self.pos_y = animate.get_y()
+		if self.image:
+			self.image.offsetX = self.pos_x
+			self.image.offsetY = self.pos_y
+		#Disabling this due to text getting screen center by default
+		# TODO fix this
+		#if self.text:
+		#	self.text.offsetX = self.pos_x
+		#	self.text.offsetY = self.pos_y
+
+	def draw(self, screen):
+		if self.drawable:
+			if self.image:
+				self.image.draw(screen)
+			if self.text:
+				self.text.draw(screen)
+
+	def add_animation(self, animation_controller):
+		self.animations.append(animation_controller)
