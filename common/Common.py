@@ -15,7 +15,7 @@ class globalVars():
   music_fadeout_time = 1500
   currentState = None
   round_start_effect = pygame.mixer.Sound('../audio/goodbadugly-whistle-long.wav')
-  max_framerate = 60
+  max_framerate = 30
   round_min = 4
   round_max = 11
   winner = 2
