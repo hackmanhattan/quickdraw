@@ -15,13 +15,19 @@ class globalVars():
   music_fadeout_time = 1500
   currentState = None
   round_start_effect = pygame.mixer.Sound('../audio/goodbadugly-whistle-long.wav')
+  max_framerate = 60
   round_min = 4
   round_max = 11
   winner = 2
+  penalty = 0
+  basicfont = pygame.font.SysFont(None, 72)
 
   debug = True
+  screen_width = 1600
+  screen_height = 900
 
-  screen = pygame.display.set_mode((1600,900))
+
+  screen = pygame.display.set_mode((screen_width,screen_height))
   clock = pygame.time.Clock()
   music = pygame.mixer.music
 
@@ -34,17 +40,13 @@ class globalVars():
 
 #Global functions
 def pauseMusic():
-  print(globalVars.musicPos)
   globalVars.musicPos = globalVars.music.get_pos()
-  print(globalVars.musicPos)
   globalVars.music.fadeout(globalVars.music_fadeout_time)
 
 def unpauseMusic():	
-  print(globalVars.musicPos)
   globalVars.music.play(-1, globalVars.musicPos/1000)
 
 def changeState(index):
-  print('testing')
   print(index)
   #print(globalVars.gameStates)
   globalVars.currentState.leave()

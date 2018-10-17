@@ -23,13 +23,13 @@ class ReadyToFire():
 			changeState("WIN_STATE")
 
 
-	def update(self):
+	def update(self, deltaTime):
     #Increment the timer and exit to the timeout state after 30 seconds
 		gv.cur_elapsed = time.time() - gv.round_start_time
 
 		if gv.cur_elapsed > gv.round_time:
       # TODO Change state to timrout when created
-			changeState("TITLE_SCREEN_STATE")
+			changeState("TIMEOUT_STATE")
 
 	def draw(self):
 		self.background.draw(gv.screen)

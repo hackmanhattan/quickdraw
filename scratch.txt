@@ -1,0 +1,17 @@
+	def animate(self, target_x, target_y, timeOver):
+		orig_x = self.pos_x
+		orig_y = self.pos_y
+
+		comp_x = (self.pos_x - target_x)**2
+		comp_y = (self.pos_y - target_y)**2
+		
+		dist = math.sqrt( comp_x + comp_y )
+		speed = dist / timeOver
+
+		delta_x = abs(orig_x - target_x) / timeOver
+		delta_y = abs(orig_y - target_y) / timeOver
+
+		for i in range(timeOver):
+			self.pos_x += delta_x
+			self.pos_y += delta_y
+			

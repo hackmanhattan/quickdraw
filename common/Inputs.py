@@ -1,4 +1,4 @@
-import pygame
+import pygame, time
 from common.Common import *
 from common.Common import globalVars as gv
 
@@ -31,6 +31,8 @@ class gameController():
 			keys=pygame.key.get_pressed()
 			if keys[gameController.readyBtn]:
 				changeState(state)
+				#delay detection so that it does not progress too quickly
+				time.sleep(0.25)
 		else:
 			#setup the analog button here
 			pass
@@ -45,6 +47,7 @@ class gameController():
 				values[i] = values[i] / (signal_reads *1.0)
 			return values
 	
+	#Check to see if any of the targets have been hit
 	def checkTargets():
 		if (gv.debug):
 			#Get the currently pressed keys
@@ -67,6 +70,20 @@ class gameController():
 				return False
 		else:
 			#setup the system to return true or false based on analog reader
+			pass
+	
+	#Check if the players hands are on the button and return true if they remove it early
+	def checkHands():
+		if (gv.debug):
+			keys=pygame.key.get_pressed()
+			if (keys[pygame.K_a]):
+				gv.penalty = 1
+				return True
+			if (keys[pygame.K_s]):
+				gv.penalty = 2
+				return True
+		else:
+			#setup button press monitoring here
 			pass
 
 	
