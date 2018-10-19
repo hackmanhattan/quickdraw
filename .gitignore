@@ -162,5 +162,6 @@ dmypy.json
 pyvenv.cfg
 pip-selfcheck.json
 
-
+# blender
+*.blend1
 # End of https://www.gitignore.io/api/python
