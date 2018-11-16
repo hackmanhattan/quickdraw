@@ -10,16 +10,12 @@ class GameObject:
 		self.pos_y = pos_y
 		self.animations = []
 		self.drawable = draw
-		if self.image:
-			self.image.offsetX = self.pos_x
-			self.image.offsetY = self.pos_y
 
 	def update(self, deltaTime):
 		for animate in self.animations:
 			if animate.active:
 				animate.tick(deltaTime)
-				self.pos_x = animate.get_x()
-				self.pos_y = animate.get_y()
+				animate.animate(self)
 		if self.image:
 			self.image.offsetX = self.pos_x
 			self.image.offsetY = self.pos_y

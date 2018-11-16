@@ -45,11 +45,11 @@ def main():
 
 
 			#run the updates according to deltatime
-			while (accumulated_delta_time > gv.max_framerate):
+			while (accumulated_delta_time > 1/gv.max_framerate):
 				gv.currentState.update(1/gv.max_framerate)
 				accumulated_delta_time -= (1/gv.max_framerate)
 			
-			accumulated_delta_time += gv.clock.tick()
+			accumulated_delta_time += gv.clock.tick(30) / 1000
 
 			gv.currentState.draw()
 			pygame.display.update()

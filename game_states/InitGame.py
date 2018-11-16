@@ -25,8 +25,10 @@ class InitGame:
     #if any sounds are playing, stop them
     pygame.mixer.stop()
     unpauseMusic()
-    animation = AnimationController(10,10, 1400, 700, 10000, True)
+    animation = TranslationController(10,10, 1400, 700, 10000, True)
+    rotation = RotationController(0, 360, 5000, True)
     self.gameObjects[0].add_animation(animation)
+    self.gameObjects[0].add_animation(rotation)
 
 
   def processEvents(self):
