@@ -32,7 +32,7 @@ class Color():
     self.b = b
     self._rgb = (r,g,b)
   def intensity(self, intensity):
-    return ( int(self.r/intensity), int(self.g/intensity), int(self.b/intensity) )
+    return ( int(self.r*intensity), int(self.g*intensity), int(self.b*intensity) )
   def white(self):
     return (255,255,255)
 
@@ -81,7 +81,7 @@ class LightGroup():
 
   def changeOne(self, led, r, g, b, i=1):
     print('changing led ' + str(led) + ' to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
-    self._pixels[led] = (r/i,g/i,b/i)
+    self._pixels[led] = (int(r/i),int(g/i),int(b/i))
   
   #Different Light animations
   def fadeIn(self, color):
