@@ -32,7 +32,7 @@ class Color():
     self.b = b
     self._rgb = (r,g,b)
   def intensity(self, intensity):
-    return ( int(self.r/intensity), int(self.g/intensity), int(self.g/intensity) )
+    return ( int(self.r/intensity), int(self.g/intensity), int(self.b/intensity) )
   def white(self):
     return (255,255,255)
 
@@ -141,7 +141,7 @@ group_size = 24
  
 # The order of the pixel colors - RGB or GRB. Some NeoPixels have red and green reversed!
 # For RGBW NeoPixels, simply change the ORDER to RGBW or GRBW.
-ORDER = neopixel.GRB
+ORDER = neopixel.RGB
  
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.0, auto_write=False,
                            pixel_order=ORDER)
