@@ -39,6 +39,9 @@ class gameController():
 
 	def pollAdc(self):
 		#poll the MCP3008 for the actual target readouts
+		# signal_reads is # of read cycles to average output
+		# sums read values from each channnel on 8pins
+		# return is an average read value for each channel
 		values = [0]*8
 		for j in range(0, signal_reads):
 			for i in range(8):
@@ -89,7 +92,10 @@ class gameController():
 	
 
 
-
+# PINS FOR GAME PROFILE 1 (standard)
+# 0,1,2 - Player 1 targets
+# 3,4,5 - Player 2 targets
+# 6,7 - Hand check
 
 
 
