@@ -4,47 +4,52 @@ import neopixel
 
 class lightController():
   _pixels = None
-  _group_size = None
+  _group_size = 0
   _lights = []
   def __init__(self, pixels, group_size):
+    print('initializing light controller')
     self._pixels = pixels
     self._group_size = group_size
     
   def loadPixelsToGroups(self):
-    for i in range( 0, self._pixels.numPixels, self._group_size ):
+    print('loading pixels to group...')
+    for i in range( 0, len(self._pixels), self._group_size ):
+      print('loading group ' + i)
       self._lights.append(lightGroup( i, self._group_size, self._pixels))
       pass
-
+    print('All groups loaded')
     pixels.show()
 
   def getLights(self):
     return self._lights
 
-  
-
 class lightGroup():
-  _leds = []
+  _leds = 0
   _pixels = None
   _group_size = 0
   def __init__(self, led_range, group_size, pixels):
+    print('initializing light group starting with' + led_range + ' with group size ' + group_size)
     self._pixels = pixels
     self._group_size = group_size
-    for l in range(led_range, led_range + group_size):
-      self._leds.append(led_range[l])
-
-  def changeAll(self, r, g, b, i, time):
-    self._pixels.fill(pixels.Color(r,g,b), self._leds[0], self._group_size )
-    self._pixels.show()
-
-  def changeOdd(self, r, g, b, i, time):
-    for i in range(1, len(self._leds), 2):
-      self._pixels[self._pixels + i].setPixelColor(r,g,b)
+    self._leds = led_range
+  def changeAll(self, r, g, b, i=1):
+    print('changing all lights to ' + r + ', ' + g + ', ' + b + ' at level ' + i)
+    for l in range(self._leds, self._leds + self._group_size):
+      self._pixels[self._leds + l] = (r/i,g/i,b/i)
       self._pixels.show()
-
-  def changeEven(self, r, g, b, i, time):
-    for i in range(0, len(self._leds), 2):
-      self._pixels[self._pixels + i].setPixelColor(r,g,b)
+  def changeOdd(self, r, g, b, i=1):
+    print('changing odd lights to ' + r + ', ' + g + ', ' + b + ' at level ' + i)
+    for l in range(self._leds + 1, self._leds + self._group_size, 2):
+      self._pixels[self._pixels + l] = (r/i,g/i,b/i)
       self._pixels.show()
+  def changeEven(self, r, g, b, i=1):
+    print('changing even lights to ' + r + ', ' + g + ', ' + b + ' at level ' + i)
+    for l in range(self._leds, self._leds + self._group_size, 2):
+      self._pixels[self._pixels + l] = (r/i,g/i,b/i)
+      self._pixels.show()
+  def changeOne(self, led, r, g, b, i=1):
+    print('changing led ' + led + ' to ' + r + ', ' + g + ', ' + b + ' at level ' + i)
+    self._pixels[led] = (r/i,g/i,b/i)
   
 #neopixel setup
 
