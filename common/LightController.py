@@ -32,7 +32,7 @@ class Color():
     self.b = b
     self._rgb = (r,g,b)
   def intensity(self, intensity):
-    return ( self.r/intensity, self.g/intensity, self.g/intensity )
+    return ( int(self.r/intensity), int(self.g/intensity), int(self.g/intensity) )
   def white(self):
     return (255,255,255)
 
