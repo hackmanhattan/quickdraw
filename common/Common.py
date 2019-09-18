@@ -31,6 +31,7 @@ class globalVars():
   clock = pygame.time.Clock()
   music = pygame.mixer.music
 
+  lightController = None
   gameStates = {}
 
 
