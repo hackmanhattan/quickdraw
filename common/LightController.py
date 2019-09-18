@@ -14,7 +14,7 @@ class LightController():
   def loadPixelsToGroups(self):
     print('loading pixels to group...')
     for i in range( 0, len(self._pixels), self._group_size ):
-      print('loading group ' + i)
+      print('loading group ' + str(i))
       self._lights.append(LightGroup( i, self._group_size, self._pixels))
       pass
     print('All groups loaded')
@@ -51,7 +51,7 @@ class LightGroup():
   _currentAnimation = "GlowFadeIn"
 
   def __init__(self, led_range, group_size, pixels):
-    print('initializing light group starting with' + led_range + ' with group size ' + group_size)
+    print('initializing light group starting with' + str(led_range) + ' with group size ' + str(group_size))
     self._pixels = pixels
     self._group_size = group_size
     self._leds = led_range
@@ -59,7 +59,7 @@ class LightGroup():
 
   #control functions for the lights themselves
   def changeAll(self, r, g, b, i=1):
-    print('changing all lights to ' + r + ', ' + g + ', ' + b + ' at level ' + i)
+    print('changing all lights to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
     self._color_1 = Color(r,g,b)
     for l in range(self._leds, self._leds + self._group_size):
       self._pixels[self._leds + l] = self._color_1.intensity(i)
@@ -67,20 +67,20 @@ class LightGroup():
 
   def changeOdd(self, r, g, b, i=1):
     self._color_1 = Color(r,g,b)
-    print('changing odd lights to ' + r + ', ' + g + ', ' + b + ' at level ' + i)
+    print('changing odd lights to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
     for l in range(self._leds + 1, self._leds + self._group_size, 2):
       self._pixels[self._pixels + l] = self._color_1.intensity(i)
       self._pixels.show()
 
   def changeEven(self, r, g, b, i=1):
     self._color_2 = Color(r,g,b)
-    print('changing even lights to ' + r + ', ' + g + ', ' + b + ' at level ' + i)
+    print('changing even lights to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
     for l in range(self._leds, self._leds + self._group_size, 2):
       self._pixels[self._pixels + l] = self._color_2.intensity(i)
       self._pixels.show()
 
   def changeOne(self, led, r, g, b, i=1):
-    print('changing led ' + led + ' to ' + r + ', ' + g + ', ' + b + ' at level ' + i)
+    print('changing led ' + str(led) + ' to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
     self._pixels[led] = (r/i,g/i,b/i)
   
   #Different Light animations
