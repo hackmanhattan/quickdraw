@@ -100,9 +100,9 @@ class LightGroup():
     self._color_4 = (r,g,b)
 
   def setGlow(self, new_time, color, dir):
-    self.target_time = self.time + new_time
-    self.start_time = self.time
-    self.curr_time = self.time
+    self.target_time = self.time.time() + new_time
+    self.start_time = self.time.time()
+    self.curr_time = self.time.time()
     self.active = True
     self._color_1 = color
     self._currentAnimation = dir
