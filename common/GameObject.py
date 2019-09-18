@@ -9,6 +9,7 @@ class GameObject:
 		self.pos_x = pos_x
 		self.pos_y = pos_y
 		self.animations = []
+		self.lights = []
 		self.drawable = draw
 
 	def update(self, deltaTime):
@@ -16,6 +17,10 @@ class GameObject:
 			if animate.active:
 				animate.tick(deltaTime)
 				animate.animate(self)
+		for light in self.lights:
+			if light.active:
+				light.tick(deltaTime)
+				light.animate(self)
 		if self.image:
 			self.image.offsetX = self.pos_x
 			self.image.offsetY = self.pos_y
@@ -34,3 +39,6 @@ class GameObject:
 
 	def add_animation(self, animation_controller):
 		self.animations.append(animation_controller)
+	
+	def add_light(self, light):
+		self.lights.append(light)

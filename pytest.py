@@ -5,6 +5,7 @@ import random
 import time
 from common import Drawable
 from game_states import InitGame, StartRound, ReadyToFire, WinState, Penalty, Timeout
+from common.LightController import LightController
 from common.Common import globalVars as gv
 from common.Common import *
 from common.Inputs import gameController as gc
@@ -28,6 +29,21 @@ def main():
 	# logo = pygame.image.load("logo.jpg")
 	# pygame.display.set_icon(logo)
 	# pygame.display.set_caption("minimal program")
+
+	#load the lights into a controller for use unless debugging
+	if (gv.debug == False):
+		import board
+		import neopixel
+		pixel_pin = board.D18
+		# The number of NeoPixels
+		num_pixels = 144
+		# the number of pixels in a group
+		group_size = 24
+		pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.0, auto_write=False)
+		#Define a new light controller
+		gv.lightController = LightController(pixels, group_size)
+
+
 
 	# define a variable to control the main loop
 	running = True

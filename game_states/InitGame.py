@@ -29,6 +29,9 @@ class InitGame:
     rotation = RotationController(0, 360, 5000, True)
     self.gameObjects[0].add_animation(animation)
     self.gameObjects[0].add_animation(rotation)
+    if (gv.debug == False):
+      for light in gv.lightController.getLights():
+        self.gameObjects[0].add_light(light)
 
 
   def processEvents(self):
