@@ -62,21 +62,21 @@ class LightGroup():
     print('changing all lights to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
     self._color_1 = Color(r,g,b)
     for l in range(self._leds, self._leds + self._group_size):
-      self._pixels[self._leds + l] = self._color_1.intensity(i)
+      self._pixels[l] = self._color_1.intensity(i)
       self._pixels.show()
 
   def changeOdd(self, r, g, b, i=1):
     self._color_1 = Color(r,g,b)
     print('changing odd lights to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
     for l in range(self._leds + 1, self._leds + self._group_size, 2):
-      self._pixels[self._pixels + l] = self._color_1.intensity(i)
+      self._pixels[l] = self._color_1.intensity(i)
       self._pixels.show()
 
   def changeEven(self, r, g, b, i=1):
     self._color_2 = Color(r,g,b)
     print('changing even lights to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
     for l in range(self._leds, self._leds + self._group_size, 2):
-      self._pixels[self._pixels + l] = self._color_2.intensity(i)
+      self._pixels[l] = self._color_2.intensity(i)
       self._pixels.show()
 
   def changeOne(self, led, r, g, b, i=1):
