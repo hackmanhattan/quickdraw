@@ -113,7 +113,7 @@ class LightGroup():
 
   def tick(self, deltaTime):
     if (self.curr_time >= self.target_time):
-      if (self._currentAnimation != 'GlowFadeIn' or self._currentAnimation != 'GlowFadeOut'):
+      if (self._currentAnimation != 'GlowFadeIn' and self._currentAnimation != 'GlowFadeOut'):
         self.active = False
       else:
         if (self._currentAnimation == 'GlowFadeIn'):
