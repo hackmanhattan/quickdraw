@@ -131,6 +131,7 @@ class LightGroup():
     if (self.curr_time >= self.target_time):
       if (self._currentAnimation != 'GlowFadeIn' and self._currentAnimation != 'GlowFadeOut'):
         self.active = False
+        self._currentAnimation = 'None'
       else:
         if (self._currentAnimation == 'GlowFadeIn'):
           self.setGlow(1000, self._color_1, 'GlowFadeOut')
@@ -161,16 +162,11 @@ num_pixels = 144
 # the number of pixels in a group
 group_size = 24
  
-# The order of the pixel colors - RGB or GRB. Some NeoPixels have red and green reversed!
-# For RGBW NeoPixels, simply change the ORDER to RGBW or GRBW.
-ORDER = neopixel.RGB
- 
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.0, auto_write=False,
-                           pixel_order=ORDER)
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.0, auto_write=False)
 
 #Define a new light controller
 target_led_controller = LightController(pixels, group_size)
-
+target_led_controller.loadPixelsToGroups()
 lights = target_led_controller.getLights()
 
 #turn the light groups on one at a time
