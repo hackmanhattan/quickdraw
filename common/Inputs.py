@@ -48,6 +48,7 @@ class gameController():
 		#1 = target ready
 		for i in range(0,targetCount):
 			target_state[i] = 1 
+			# change target color to hit me mode
 	def pollAdc(self):
 		#poll the MCP3008 for the actual target readouts
 		# signal_reads is # of read cycles to average output
