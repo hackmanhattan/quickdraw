@@ -16,6 +16,7 @@ class ReadyToFire():
     # Give the players 30 seconds to hit the target first
 		gv.round_time = 30
 		gv.round_start_time = time.time()
+		gc.readyToHit()
 		
 
 	def processEvents(self):

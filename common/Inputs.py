@@ -49,6 +49,8 @@ class gameController():
 		for i in range(0,targetCount):
 			target_state[i] = 1 
 			# change target color to hit me mode
+			for light in gv.lightController.getLights():
+				light.changeAll(0,255,0)
 	def pollAdc(self):
 		#poll the MCP3008 for the actual target readouts
 		# signal_reads is # of read cycles to average output

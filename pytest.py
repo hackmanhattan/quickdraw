@@ -31,7 +31,7 @@ def main():
 	# pygame.display.set_caption("minimal program")
 
 	#load the lights into a controller for use unless debugging
-	if (gv.debug == False):
+	if (gv.debug == True):
 		import board
 		import neopixel
 		pixel_pin = board.D18

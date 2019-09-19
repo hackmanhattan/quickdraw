@@ -151,25 +151,21 @@ class LightGroup():
 
     
   
-#neopixel setup
+# #neopixel setup
 
-# Choose an open pin connected to the Data In of the NeoPixel strip, i.e. board.D18
-# NeoPixels must be connected to D10, D12, D18 or D21 to work.
-pixel_pin = board.D21
+# # Choose an open pin connected to the Data In of the NeoPixel strip, i.e. board.D18
+# # NeoPixels must be connected to D10, D12, D18 or D21 to work.
+# pixel_pin = board.D21
  
-# The number of NeoPixels
-num_pixels = 144
-# the number of pixels in a group
-group_size = 24
+# # The number of NeoPixels
+# num_pixels = 144
+# # the number of pixels in a group
+# group_size = 24
  
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.0, auto_write=False)
+# pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.0, auto_write=False)
 
-#Define a new light controller
-target_led_controller = LightController(pixels, group_size)
-target_led_controller.loadPixelsToGroups()
-lights = target_led_controller.getLights()
+# #Define a new light controller
+# target_led_controller = LightController(pixels, group_size)
+# target_led_controller.loadPixelsToGroups()
+# lights = target_led_controller.getLights()
 
-#turn the light groups on one at a time
-for i in range(0, len(lights)):
-  lights[i].changeAll(255, 0, 0, 100, 60)
-  time.sleep(1)
