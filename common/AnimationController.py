@@ -55,7 +55,7 @@ class TranslationController:
 
 	def animate(self, targetObj):
 		#class functionality
-		targetObj.Fpos_x = self.cur_x
+		targetObj.pos_x = self.cur_x
 		targetObj.pos_y = self.cur_y
 		pass
 

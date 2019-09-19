@@ -1,6 +1,4 @@
 import time
-import board
-import neopixel
 
 class LightController():
   _pixels = None
@@ -58,25 +56,28 @@ class LightGroup():
     self.time = time
 
   #control functions for the lights themselves
-  def changeAll(self, r, g, b, i=1):
+  def changeAll(self, r, g, b, i=1, show=True):
     print('changing all lights to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
     self._color_1 = Color(r,g,b)
-    for l in range(self._leds, self._leds + self._group_size - 1):
+    for l in range(self._leds, self._leds + self._group_size):
       self._pixels[l] = self._color_1.intensity(i)
+    if show:  
       self._pixels.show()
 
-  def changeOdd(self, r, g, b, i=1):
+  def changeOdd(self, r, g, b, i=1, show=True):
     self._color_1 = Color(r,g,b)
     print('changing odd lights to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
-    for l in range(self._leds + 1, self._leds + self._group_size - 1, 2):
+    for l in range(self._leds + 1, self._leds + self._group_size, 2):
       self._pixels[l] = self._color_1.intensity(i)
+    if show:  
       self._pixels.show()
 
-  def changeEven(self, r, g, b, i=1):
+  def changeEven(self, r, g, b, i=1, show=True):
     self._color_2 = Color(r,g,b)
     print('changing even lights to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
-    for l in range(self._leds, self._leds + self._group_size - 1, 2):
+    for l in range(self._leds, self._leds + self._group_size, 2):
       self._pixels[l] = self._color_2.intensity(i)
+    if show:  
       self._pixels.show()
 
   def changeOne(self, led, r, g, b, i=1):
@@ -85,13 +86,36 @@ class LightGroup():
   
   #Different Light animations
   def fadeIn(self, color):
-    timeTilTarget = self.target_time - self.curr_time
-    total_time = self.target_time - self.start_time
+    timeTilTarget = self.timeRemaining()
+    total_time = self.totalTime()
     self.changeAll( color.r,color.g,color.b, 1 - (timeTilTarget / total_time) )
   def fadeOut(self, color):
-    timeTilTarget = self.target_time - self.curr_time
-    total_time = self.target_time - self.start_time
+    timeTilTarget = self.timeRemaining()
+    total_time = self.totalTime()
     self.changeAll( color.r,color.g,color.b, 0 + (timeTilTarget / total_time) )
+  def alternate(self):
+    if self._currentAnimation == 'Alt1':
+      self.changeEven(self._color_1.r, self._color_1.g, self._color_1.b)
+      self.changeOdd(self._color_2.r, self._color_2.g, self._color_2.b)
+    else:
+      self.changeEven(self._color_2.r, self._color_2.g, self._color_2.b)
+      self.changeOdd(self._color_1.r, self._color_1.g, self._color_1.b)
+    if self.timeRemaining() <= 50:
+      if self._currentAnimation == 'Alt1':
+        self.setAlternate(self.totalTime(), 'Alt2')
+      else:
+        self.setAlternate(self.totalTime())
+
+  
+  #TIME math
+  #Get time remaining on current animation
+  def timeRemaining(self):
+    return self.target_time - self.curr_time
+  #Get the total time the animation was set for
+  def totalTime(self):
+    return self.target_time - self.start_time
+
+    
 
   #Have up to 4 colors saved
   def setColor1(self, r,g,b):
@@ -115,16 +139,21 @@ class LightGroup():
   def setSpiral(self):
     pass
   
-  def setAlternate(self):
-    pass
+  def setAlternate(self, alt_time, dir='Alt1'):
+    self.setupTime(alt_time)
+    self.active = True
+    self._currentAnimation = dir
 
   def setupBasicPattern(self, new_time, color, animation):
     self.active = True
+    self._color_1 = color
+    self._currentAnimation = animation
+    self.setupTime(new_time)
+  
+  def setupTime(self, new_time):
     self.target_time = self.time.time() + new_time
     self.start_time = self.time.time()
     self.curr_time = self.time.time()
-    self._color_1 = color
-    self._currentAnimation = animation
 
   #relevant commands for the game loop
   def tick(self, deltaTime):
@@ -147,9 +176,11 @@ class LightGroup():
       self.fadeOut(self._color_1)
     elif (self._currentAnimation == 'Flash'):
       self.fadeOut(self._color_1)
+    elif (self._currentAnimation == 'Alt1' or self._currentAnimation == 'Alt2'):
+      self.alternate()
     
-
-    
+# import board
+# import neopixel
   
 # #neopixel setup
 

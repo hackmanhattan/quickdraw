@@ -32,6 +32,7 @@ class globalVars():
   music = pygame.mixer.music
 
   lightController = None
+  lightsObject = None
   gameStates = {}
 
 

@@ -9,6 +9,7 @@ from common.LightController import LightController
 from common.Common import globalVars as gv
 from common.Common import *
 from common.Inputs import gameController as gc
+from common.GameObject import *
 #mike semko helped
  
 # define a main function
@@ -34,7 +35,7 @@ def main():
 	if (gv.debug == False):
 		import board
 		import neopixel
-		pixel_pin = board.D18
+		pixel_pin = board.D21
 		# The number of NeoPixels
 		num_pixels = 144
 		# the number of pixels in a group
@@ -43,6 +44,12 @@ def main():
 		#Define a new light controller
 		gv.lightController = LightController(pixels, group_size)
 		gv.lightController.loadPixelsToGroups()
+
+	#setup the lights as a global for all states to access
+	if (gv.debug == False):
+		gv.lightsObject = GameObject(0,0,False)
+		for light in gv.lightController.getLights():
+			gv.lightsObject.add_light(light)
 
 
 
