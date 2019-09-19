@@ -18,7 +18,7 @@ class LightController():
       self._lights.append(LightGroup( i, self._group_size, self._pixels))
       pass
     print('All groups loaded')
-    pixels.show()
+    self._pixels.show()
 
   def getLights(self):
     return self._lights

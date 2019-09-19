@@ -21,7 +21,6 @@ class gameController():
 		targetFour = pygame.K_4
 		targetFive = pygame.K_5
 		targetSix = pygame.K_6
-		readyBtn = pygame.K_SPACE
 	else:
 		#Setup the analog reader here
 		CLK = 18
@@ -31,6 +30,7 @@ class gameController():
 		mcp = Adafruit_MCP3008.MCP3008(clk=CLK,cs=CS,miso=MISO,mosi=MOSI)
 		print("mcp initalized")
 		pass
+	readyBtn = pygame.K_SPACE
 
 	def checkReady(self, state):
 		if (gv.debug):
