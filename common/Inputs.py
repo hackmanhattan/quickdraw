@@ -33,16 +33,13 @@ class gameController():
 	readyBtn = pygame.K_SPACE
 
 	def checkReady(self, state):
-		if (gv.debug):
-			#Get the currently pressed keys
-			keys=pygame.key.get_pressed()
-			if keys[gameController.readyBtn]:
-				changeState(state)
-				#delay detection so that it does not progress too quickly
-				time.sleep(0.25)
-		else:
-			#setup the analog button here
-			pass
+		#Get the currently pressed keys
+		keys=pygame.key.get_pressed()
+		if keys[gameController.readyBtn]:
+			changeState(state)
+			#delay detection so that it does not progress too quickly
+			time.sleep(0.25)
+		
 	def readyToHit(self):
 		#1 = target ready
 		for i in range(0,targetCount):
