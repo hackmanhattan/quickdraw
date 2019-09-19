@@ -42,6 +42,7 @@ def main():
 		pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.0, auto_write=False)
 		#Define a new light controller
 		gv.lightController = LightController(pixels, group_size)
+		gv.lightController.loadPixelsToGroups()
 
 
 

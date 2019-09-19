@@ -22,7 +22,7 @@ class globalVars():
   penalty = 0
   basicfont = pygame.font.SysFont(None, 72)
 
-  debug = True
+  debug = False
   screen_width = 1600
   screen_height = 900
 
