@@ -40,10 +40,10 @@ class gameController():
 			#delay detection so that it does not progress too quickly
 			time.sleep(0.25)
 		
-	def readyToHit():
+	def readyToHit(self):
 		#1 = target ready
 		for i in range(0,targetCount):
-			target_state[i] = 1 
+			gameController.target_state[i] = 1 
 			# change target color to hit me mode
 			for light in gv.lightController.getLights():
 				light.changeAll(0,255,0)
