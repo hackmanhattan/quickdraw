@@ -40,7 +40,7 @@ class gameController():
 			#delay detection so that it does not progress too quickly
 			time.sleep(0.25)
 		
-	def readyToHit(self):
+	def readyToHit():
 		#1 = target ready
 		for i in range(0,targetCount):
 			target_state[i] = 1 
