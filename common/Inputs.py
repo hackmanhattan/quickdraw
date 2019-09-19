@@ -10,7 +10,6 @@ impactThreshold = 30
 targetCount = 6
 class gameController():
 	target_state = [0]*targetCount #0=round start, 1 = target ready, 2 =target hit
-	mcp
 	def __init__(self):
 		pass
 	if (gv.debug):
@@ -93,9 +92,9 @@ class gameController():
 						target_state[i] = 2
 						# TODO: code to change target color
 						# TODO: check if winner
-						if sum(target_state[0:(targetCount/2)-1]) is 6:
+						if sum(target_state[0:3]) is 6:
 							gv.winner = 1
-						else if sum(target_state[(targetCount/2):targetCount-1]) is 6:
+						elif sum(target_state[3:6]) is 6:
 							gv.winner = 2
 				return False
 		else:
