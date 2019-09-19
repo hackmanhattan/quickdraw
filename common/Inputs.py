@@ -6,9 +6,11 @@ if (gv.debug == False):
 	import Adafruit_GPIO.SPI as SPI
 	import Adafruit_MCP3008
 
+impactThreshold = 30
+targetCount = 6
 class gameController():
-	target_state = [0]*6
-
+	target_state = [0]*targetCount #0=round start, 1 = target ready, 2 =target hit
+	mcp
 	def __init__(self):
 		pass
 	if (gv.debug):
@@ -42,7 +44,10 @@ class gameController():
 		else:
 			#setup the analog button here
 			pass
-
+	def readyToHit(self):
+		#1 = target ready
+		for i in range(0,targetCount):
+			target_state[i] = 1 
 	def pollAdc(self):
 		#poll the MCP3008 for the actual target readouts
 		# signal_reads is # of read cycles to average output
@@ -78,8 +83,17 @@ class gameController():
 				gv.winner = 2
 				return True
 			else:
-				values = gameController.pollAdc()
 				# logic for reading signals and toggling target changes
+				values = gameController.pollAdc()
+				for i in range(0,targetCount):
+					if values[i]>impactThreshold and target_state[i] is 1:
+						target_state[i] = 2
+						# TODO: code to change target color
+						# TODO: check if winner
+						if sum(target_state[0:(targetCount/2)-1]) is 6:
+							gv.winner = 1
+						else if sum(target_state[(targetCount/2):targetCount-1]) is 6:
+							gv.winner = 2
 				return False
 		else:
 			#setup the system to return true or false based on analog reader
