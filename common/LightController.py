@@ -85,9 +85,13 @@ class LightGroup():
   
   #Different Light animations
   def fadeIn(self, color):
-    self.changeAll( color.r,color.g,color.b, self.curr_time / self.target_time )
+    timeTilTarget = self.target_time - self.curr_time
+    total_time = self.target_time - self.start_time
+    self.changeAll( color.r,color.g,color.b, 1 - (timeTilTarget / total_time) )
   def fadeOut(self, color):
-    self.changeAll( color.r,color.g,color.b, 1 - (self.curr_time / self.target_time) )
+    timeTilTarget = self.target_time - self.curr_time
+    total_time = self.target_time - self.start_time
+    self.changeAll( color.r,color.g,color.b, 0 + (timeTilTarget / total_time) )
 
   #Have up to 4 colors saved
   def setColor1(self, r,g,b):
@@ -100,16 +104,16 @@ class LightGroup():
     self._color_4 = (r,g,b)
 
   def setGlow(self, new_time, color, dir):
-    self.target_time = self.time + new_time
-    self.start_time = self.time
-    self.curr_time = self.time
+    self.target_time = self.time.time() + new_time
+    self.start_time = self.time.time()
+    self.curr_time = self.time.time()
     self.active = True
     self._color_1 = color
     self._currentAnimation = dir
 
   def tick(self, deltaTime):
-    if (self.time >= self.target_time):
-      if (self._currentAnimation != 'GlowFadeIn' or self._currentAnimation != 'GlowFadeOut'):
+    if (self.curr_time >= self.target_time):
+      if (self._currentAnimation != 'GlowFadeIn' and self._currentAnimation != 'GlowFadeOut'):
         self.active = False
       else:
         if (self._currentAnimation == 'GlowFadeIn'):
@@ -119,7 +123,7 @@ class LightGroup():
 
     self.curr_time += deltaTime
 
-  def animate(self, targetObj):
+  def animate(self):
     if (self._currentAnimation == 'GlowFadeIn'):
       self.fadeIn(self._color_1)
     elif (self._currentAnimation == 'GlowFadeOut'):
