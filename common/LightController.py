@@ -85,9 +85,13 @@ class LightGroup():
   
   #Different Light animations
   def fadeIn(self, color):
-    self.changeAll( color.r,color.g,color.b, self.curr_time / self.target_time )
+    timeTilTarget = self.target_time - self.curr_time
+    total_time = self.target_time - self.start_time
+    self.changeAll( color.r,color.g,color.b, total_time / timeTilTarget )
   def fadeOut(self, color):
-    self.changeAll( color.r,color.g,color.b, 1 - (self.curr_time / self.target_time) )
+    timeTilTarget = self.target_time - self.curr_time
+    total_time = self.target_time - self.start_time
+    self.changeAll( color.r,color.g,color.b, 1 - (total_time / timeTilTarget) )
 
   #Have up to 4 colors saved
   def setColor1(self, r,g,b):
