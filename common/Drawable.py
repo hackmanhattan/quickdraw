@@ -25,7 +25,7 @@ class Image:
 			screen.blit(self.image, newPos)
 	
 	def rotate(self, angle):
-		print(angle)
+		#print(angle)
 		self.image = pygame.transform.rotate(self.orig, -angle)
 
 class TextField:
