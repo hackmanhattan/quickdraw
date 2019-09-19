@@ -7,9 +7,10 @@ if (gv.debug == False):
 	import Adafruit_MCP3008
 
 class gameController():
+	target_state = [0]*6
+
 	def __init__(self):
 		pass
-
 	if (gv.debug):
 		playerOneReady = True
 		playerTwoReady = True
@@ -22,7 +23,12 @@ class gameController():
 		readyBtn = pygame.K_SPACE
 	else:
 		#Setup the analog reader here
-		mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(0, 0))
+		CLK = 18
+		MISO = 23
+		MOSI = 24
+		CLK = 25
+		mcp = Adafruit_MCP3008.MCP3008(clk=CLK,cs=CS,miso=MISO,mosi=MOSI)
+		print("mcp initalized")
 		pass
 
 	def checkReady(self, state):
@@ -42,6 +48,7 @@ class gameController():
 		# signal_reads is # of read cycles to average output
 		# sums read values from each channnel on 8pins
 		# return is an average read value for each channel
+		signal_reads = 1
 		values = [0]*8
 		for j in range(0, signal_reads):
 			for i in range(8):
@@ -55,6 +62,7 @@ class gameController():
 		if (gv.debug):
 			#Get the currently pressed keys
 			keys=pygame.key.get_pressed()
+
 			if ( 
 				keys[gameController.targetOne] | 
 				keys[gameController.targetTwo] |
@@ -70,6 +78,8 @@ class gameController():
 				gv.winner = 2
 				return True
 			else:
+				values = gameController.pollAdc()
+				# logic for reading signals and toggling target changes
 				return False
 		else:
 			#setup the system to return true or false based on analog reader
