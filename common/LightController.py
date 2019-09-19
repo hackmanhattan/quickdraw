@@ -103,14 +103,30 @@ class LightGroup():
   def setColor4(self, r,g,b):
     self._color_4 = (r,g,b)
 
+  #setup animation patterns here
   def setGlow(self, new_time, color, dir):
+    self.setupBasicPattern(new_time, color, dir)
+
+  def setFlash(self, fadeTime, color):
+    #light up target immediately and fade away
+    self.changeAll(color.r, color.g, color.b)
+    self.setupBasicPattern(fadeTime, color, "Flash")
+
+  def setSpiral(self):
+    pass
+  
+  def setAlternate(self):
+    pass
+
+  def setupBasicPattern(self, new_time, color, animation):
+    self.active = True
     self.target_time = self.time.time() + new_time
     self.start_time = self.time.time()
     self.curr_time = self.time.time()
-    self.active = True
     self._color_1 = color
-    self._currentAnimation = dir
+    self._currentAnimation = animation
 
+  #relevant commands for the game loop
   def tick(self, deltaTime):
     if (self.curr_time >= self.target_time):
       if (self._currentAnimation != 'GlowFadeIn' and self._currentAnimation != 'GlowFadeOut'):
@@ -127,6 +143,8 @@ class LightGroup():
     if (self._currentAnimation == 'GlowFadeIn'):
       self.fadeIn(self._color_1)
     elif (self._currentAnimation == 'GlowFadeOut'):
+      self.fadeOut(self._color_1)
+    elif (self._currentAnimation == 'Flash'):
       self.fadeOut(self._color_1)
     
 
