@@ -97,6 +97,22 @@ class gameController():
 				return False
 		else:
 			#setup the system to return true or false based on analog reader
+			# logic for reading signals and toggling target changes
+			values = gameController.pollAdc()
+			#print('| {0:>4} | {1:>4} | {2:>4} | {3:>4} | {4:>4} | {5:>4} | {6:>4} | {7:>4} |'.format(*values))
+			#print(gameController.target_state)
+			for i in range(0,targetCount):
+				if values[i]>impactThreshold and gameController.target_state[i] is 1:
+					gameController.target_state[i] = 2
+					# TODO: code to change target color
+					gv.lightController.getLights()[i].changeAll(0,0,255,1,True)
+					# TODO: check if winner
+					if sum(gameController.target_state[0:3]) is 6:
+						gv.winner = 1
+						return True
+					elif sum(gameController.target_state[3:6]) is 6:
+						gv.winner = 2
+						return True
 			pass
 	
 	#Check if the players hands are on the button and return true if they remove it early
