@@ -57,7 +57,7 @@ class gameController():
 		values = [0]*8
 		for j in range(0, signal_reads):
 			for i in range(8):
-				values[i] +=  mcp.read_adc(i)
+				values[i] +=  gameController.mcp.read_adc(i)
 			for i in range(0,8):
 				values[i] = values[i] / (signal_reads *1.0)
 			return values
