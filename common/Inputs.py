@@ -40,7 +40,7 @@ class gameController():
 			#delay detection so that it does not progress too quickly
 			time.sleep(0.25)
 		
-	def readyToHit(self):
+	def readyToHit():
 		#1 = target ready
 		for i in range(0,targetCount):
 			gameController.target_state[i] = 1 
@@ -48,7 +48,7 @@ class gameController():
 			for light in gv.lightController.getLights():
 				light.changeAll(0,255,0,1,False)
 			gv.lightController._pixels.show()
-	def pollAdc(self):
+	def pollAdc():
 		#poll the MCP3008 for the actual target readouts
 		# signal_reads is # of read cycles to average output
 		# sums read values from each channnel on 8pins
