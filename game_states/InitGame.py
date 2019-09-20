@@ -19,7 +19,7 @@ class InitGame:
     self.gameObjects.append(gameObject)
   
   def removeGameObj(self, target):
-    self.gameObjects[target].remove()
+    self.gameObjects.remove(target)
 
   def enter(self):
     #Turn the music on if not playing, checks at beginning of init to make sure, unpauses when re-entering state
@@ -55,6 +55,5 @@ class InitGame:
     #cleanup after yourself
     for light in gv.lightsObject.lights:
       light.clearAnim()
-    for i in range(1,len(self.gameObjects)):
-      self.removeGameObj(i)
+    self.removeGameObj(1)
     pass
