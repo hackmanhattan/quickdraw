@@ -5,6 +5,7 @@ from common.AnimationController import *
 from common.Common import *
 from common.Common import globalVars as gv
 from common.Inputs import gameController as gc
+from common.LightController import Color
 
 class InitGame:
   def __init__(self):
@@ -16,6 +17,9 @@ class InitGame:
 
   def addGameObj(self, gameObject):
     self.gameObjects.append(gameObject)
+  
+  def removeGameObj(self, target):
+    self.gameObjects[target].remove()
 
   def enter(self):
     #Turn the music on if not playing, checks at beginning of init to make sure, unpauses when re-entering state
@@ -29,6 +33,9 @@ class InitGame:
     rotation = RotationController(0, 360, 5000, True)
     self.gameObjects[0].add_animation(animation)
     self.gameObjects[0].add_animation(rotation)
+    self.addGameObj(gv.lightsObject)
+    for light in gv.lightsObject.lights:
+      light.setGlow(500, Color(255,0,0), 'GlowFadeIn')
 
 
   def processEvents(self):
@@ -45,4 +52,9 @@ class InitGame:
       obj.draw(gv.screen)
 
   def leave(self):
+    #cleanup after yourself
+    for light in gv.lightsObject.lights:
+      light.clearAnim()
+    for i in range(1,len(self.gameObjects)):
+      self.removeGameObj(i)
     pass

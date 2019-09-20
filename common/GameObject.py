@@ -20,7 +20,7 @@ class GameObject:
 		for light in self.lights:
 			if light.active:
 				light.tick(deltaTime)
-				light.animate(self)
+				light.animate()
 		if self.image:
 			self.image.offsetX = self.pos_x
 			self.image.offsetY = self.pos_y

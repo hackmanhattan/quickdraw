@@ -46,7 +46,7 @@ class LightGroup():
   _color_3 = Color(0,0,0)
   _color_4 = Color(0,0,0)
   active = False
-  _currentAnimation = "GlowFadeIn"
+  _currentAnimation = "None"
 
   def __init__(self, led_range, group_size, pixels):
     print('initializing light group starting with' + str(led_range) + ' with group size ' + str(group_size))
@@ -128,6 +128,10 @@ class LightGroup():
     self._color_4 = (r,g,b)
 
   #setup animation patterns here
+  def clearAnim(self):
+    self.active = False
+    self._currentAnimation = 'None'
+
   def setGlow(self, new_time, color, dir):
     self.setupBasicPattern(new_time, color, dir)
 
