@@ -56,6 +56,14 @@ class LightGroup():
     self.time = time
 
   #control functions for the lights themselves
+  def globalChangeAll(self, r,g,b, i=1, show=True):
+    self._color_1 = Color(r,g,b)
+    for l in range(self._pixels, len(self._pixels)):
+      self._pixels[l] = self._color_1.intensity(i)
+    if show:  
+      self._pixels.show()
+
+
   def changeAll(self, r, g, b, i=1, show=True):
     print('changing all lights to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
     self._color_1 = Color(r,g,b)
@@ -93,6 +101,14 @@ class LightGroup():
     timeTilTarget = self.timeRemaining()
     total_time = self.totalTime()
     self.changeAll( color.r,color.g,color.b, 0 + (timeTilTarget / total_time) )
+  def globalFadeIn(self, color):
+    timeTilTarget = self.timeRemaining()
+    total_time = self.totalTime()
+    self.globalChangeAll( color.r,color.g,color.b, 1 - (timeTilTarget / total_time) )
+  def globalFadeOut(self, color):
+    timeTilTarget = self.timeRemaining()
+    total_time = self.totalTime()
+    self.globalChangeAll( color.r,color.g,color.b, 0 + (timeTilTarget / total_time) )
   def alternate(self):
     if self._currentAnimation == 'Alt1':
       self.changeEven(self._color_1.r, self._color_1.g, self._color_1.b)
@@ -167,17 +183,17 @@ class LightGroup():
         self._currentAnimation = 'None'
       else:
         if (self._currentAnimation == 'GlowFadeIn'):
-          self.setGlow(1000, self._color_1, 'GlowFadeOut')
+          self.setGlow(self.totalTime(), self._color_1, 'GlowFadeOut')
         else:
-          self.setGlow(1000, self._color_1, 'GlowFadeIn')
+          self.setGlow(self.totalTime(), self._color_1, 'GlowFadeIn')
 
     self.curr_time += deltaTime
 
   def animate(self):
     if (self._currentAnimation == 'GlowFadeIn'):
-      self.fadeIn(self._color_1)
+      self.globalFadeIn(self._color_1)
     elif (self._currentAnimation == 'GlowFadeOut'):
-      self.fadeOut(self._color_1)
+      self.globalFadeOut(self._color_1)
     elif (self._currentAnimation == 'Flash'):
       self.fadeOut(self._color_1)
     elif (self._currentAnimation == 'Alt1' or self._currentAnimation == 'Alt2'):
