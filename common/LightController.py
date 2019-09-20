@@ -155,7 +155,7 @@ class LightGroup():
     self.setupTime(new_time)
   
   def setupTime(self, new_time):
-    self.target_time = self.time.time() + new_time
+    self.target_time = self.time.time() + new_time / 1000
     self.start_time = self.time.time()
     self.curr_time = self.time.time()
 
