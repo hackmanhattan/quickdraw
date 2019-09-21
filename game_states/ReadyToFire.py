@@ -29,7 +29,7 @@ class ReadyToFire():
 	def update(self, deltaTime):
     #Increment the timer and exit to the timeout state after 30 seconds
 		gv.cur_elapsed = time.time() - gv.round_start_time
-		self.timer_text.text = round(gv.cur_elapsed,4)
+		self.timer_text.text = str(round(gv.cur_elapsed,4))
 
 		if gv.cur_elapsed > gv.round_time:
       # TODO Change state to timrout when created
