@@ -41,7 +41,7 @@ class gameController():
 			#delay detection so that it does not progress too quickly
 			time.sleep(0.25)
 		elif keys[gameController.quitBtn]:
-			pygame.pygame.quit()
+			pygame.quit()
 		elif keys[pygame.K_RALT] and keys[pygame.K_RETURN]:
 			pygame.display.toggle_fullscreen()	
 	def readyToHit():

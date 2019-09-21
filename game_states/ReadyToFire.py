@@ -9,7 +9,7 @@ import random
 class ReadyToFire():
 	def __init__(self):
 		self.background = Image("background_draw", "quickdraw_draw.jpg", 0,0, True )
-		self.timer_text = TextField("round_timer", "TIMER", 0, -(gv.screen_height/2)+40, False)
+		self.timer_text = TextField("round_timer", "TIMER", 0, -(gv.screen_height/2)+40, True)
 
 	def enter(self):
 		# TODO Kill the sound effect from wait here 
