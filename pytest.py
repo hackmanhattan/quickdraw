@@ -34,13 +34,13 @@ def main():
 	#load the lights into a controller for use unless debugging
 	if (gv.debug == False):
 		import board
-		import neopixel
+		from libs.neopixel_mod import NeoPixel as neopixel
 		pixel_pin = board.D21
 		# The number of NeoPixels
 		num_pixels = 144
 		# the number of pixels in a group
 		group_size = 24
-		pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=False)
+		pixels = neopixel(pixel_pin, num_pixels, brightness=0.2, auto_write=False)
 		#Define a new light controller
 		gv.lightController = LightController(pixels, group_size)
 		gv.lightController.loadPixelsToGroups()

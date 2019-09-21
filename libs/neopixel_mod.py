@@ -214,6 +214,26 @@ class NeoPixel:
             self.show()
         self.auto_write = auto_write
 
+    def fill_range(self, color, start, end):
+        """Colors all the pixels the given ***color*** in a certain range/"""
+        auto_write = self.auto_write
+        self.auto_write = False
+        for i, _ in range(start,end):
+            self[i] = color
+        if auto_write:
+            self.show()
+        self.auto_write = auto_write
+
+    def fill_range_with_step(self, color, start, end, step):
+        """Colors all the pixels the given ***color*** in a certain range/"""
+        auto_write = self.auto_write
+        self.auto_write = False
+        for i, _ in range(start,end, step):
+            self[i] = color
+        if auto_write:
+            self.show()
+        self.auto_write = auto_write
+
     def write(self):
         """.. deprecated: 1.0.0
 

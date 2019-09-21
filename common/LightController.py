@@ -66,8 +66,9 @@ class LightGroup():
   def changeAll(self, r, g, b, i=1, show=True):
     print('changing all lights to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
     self._color_1 = Color(r,g,b)
-    for l in range(self._leds, self._leds + self._group_size):
-      self._pixels[l] = self._color_1.intensity(i)
+    self._pixels.fill_range(self._color_1.intensity(i),self._leds, self._leds + self._group_size)
+    # for l in range(self._leds, self._leds + self._group_size):
+    #   self._pixels[l] = self._color_1.intensity(i)
     if show:  
       self._pixels.show()
 
