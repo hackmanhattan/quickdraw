@@ -58,8 +58,7 @@ class LightGroup():
   #control functions for the lights themselves
   def globalChangeAll(self, r,g,b, i=1, show=True):
     self._color_1 = Color(r,g,b)
-    for l in range(self._pixels, len(self._pixels)):
-      self._pixels[l] = self._color_1.intensity(i)
+    self._pixels.fill(self._color_1.intensity(i))
     if show:  
       self._pixels.show()
 
@@ -183,9 +182,9 @@ class LightGroup():
         self._currentAnimation = 'None'
       else:
         if (self._currentAnimation == 'GlowFadeIn'):
-          self.setGlow(self.totalTime(), self._color_1, 'GlowFadeOut')
+          self.setGlow(500, self._color_1, 'GlowFadeOut')
         else:
-          self.setGlow(self.totalTime(), self._color_1, 'GlowFadeIn')
+          self.setGlow(500, self._color_1, 'GlowFadeIn')
 
     self.curr_time += deltaTime
 

@@ -31,6 +31,7 @@ class gameController():
 		print("mcp initalized")
 		pass
 	readyBtn = pygame.K_SPACE
+	quitBtn = pygame.K_ESCAPE
 
 	def checkReady(self, state):
 		#Get the currently pressed keys
@@ -39,7 +40,10 @@ class gameController():
 			changeState(state)
 			#delay detection so that it does not progress too quickly
 			time.sleep(0.25)
-		
+		elif keys[gameController.quitBtn]:
+			pygame.event.Event(pygame.QUIT)
+		elif keys[pygame.K_RALT] and keys[pygame.K_RETURN]:
+			pygame.display.toggle_fullscreen()	
 	def readyToHit():
 		#1 = target ready
 		for i in range(0,targetCount):
