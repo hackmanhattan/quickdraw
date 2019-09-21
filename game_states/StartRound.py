@@ -23,12 +23,14 @@ class StartRound:
 		pauseMusic()
 		gv.round_start_effect.play()
 
+		#kill the lights
+		gv.lightController._pixels.fill((100,100,100))
 		#generate the round interval period
 		gv.round_time = random.randint(gv.round_min, gv.round_max)
 		gv.round_start_time = time.time()
 
 		#reset clint for his slow travel
-		animation = TranslationController(250,0, 600, 0, 10000, True)
+		animation = TranslationController(250,100, 600, 100, 10000, True)
 		self.gameObjects[0].add_animation(animation)
 
 		#self.foreground.pos_x = 250
