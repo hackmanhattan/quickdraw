@@ -24,7 +24,8 @@ class StartRound:
 		gv.round_start_effect.play()
 
 		#kill the lights
-		gv.lightController._pixels.fill((100,100,100))
+		gv.lightController._pixels.fill((0,0,0))
+		gv.lightController._pixels.show()
 		#generate the round interval period
 		gv.round_time = random.randint(gv.round_min, gv.round_max)
 		gv.round_start_time = time.time()
