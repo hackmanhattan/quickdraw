@@ -56,5 +56,5 @@ class InitGame:
     #cleanup after yourself
     for light in gv.lightsObject.lights:
       light.clearAnim()
-    self.removeGameObj(1)
+    self.removeGameObj(gv.lightsObject)
     pass
