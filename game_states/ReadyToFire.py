@@ -37,7 +37,7 @@ class ReadyToFire():
 
 	def draw(self):
 		self.background.draw(gv.screen)
-		self.text.draw(gv.screen)
+		self.timer_text.draw(gv.screen)
     
 	def leave(self):
 		pass

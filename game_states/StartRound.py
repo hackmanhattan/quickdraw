@@ -13,7 +13,7 @@ class StartRound:
 		self.background = Image("background_start", "screen_bg.jpg", 0,0, True )
 		self.debug = TextField("debug_text", "test", -(gv.screen_width/2) + 100, -(gv.screen_height/2)+40, False)
 		self.gameObjects = []
-		clintImg = Image("fore_clint", "clint.png", 0,150, True )
+		clintImg = Image("fore_clint", "clint.png", 0,250, True )
 		clintObj = GameObject(10,10,True,clintImg)
 		self.gameObjects.append(clintObj)
 		
