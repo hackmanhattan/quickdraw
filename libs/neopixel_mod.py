@@ -218,8 +218,11 @@ class NeoPixel:
         """Colors all the pixels the given ***color*** in a certain range/"""
         auto_write = self.auto_write
         self.auto_write = False
-        for i, _ in range(start,end):
-            self[i] = color
+        for i, _ in enumerate(self):
+            if i>=start:
+                self[i] = color
+            if i>end:
+                break
         if auto_write:
             self.show()
         self.auto_write = auto_write
