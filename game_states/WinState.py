@@ -26,7 +26,7 @@ class WinState:
 
 		#Reveal the time for the player who won to hit the target
 		lastTime = gv.cur_elapsed
-		self.text.text = "Time elapsed " + str(lastTime) + " seconds"
+		self.text.text = "Time elapsed " + str(round(lastTime,3)) + " seconds"
 		
 
 	def processEvents(self):
