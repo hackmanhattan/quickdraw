@@ -7,7 +7,7 @@ from common.Common import globalVars as gv
 from common.Inputs import gameController as gc
 from common.LightController import Color
 
-class InitGame:
+class TitleScreen:
   def __init__(self):
     self.background = Image("background_title", "quickdraw_title_b.jpg", 0,0, True )
     self.gameObjects = []
