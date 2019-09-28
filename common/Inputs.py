@@ -1,3 +1,4 @@
+
 import pygame, time
 from common.Common import *
 from common.Common import globalVars as gv
@@ -32,18 +33,27 @@ class gameController():
 		pass
 	readyBtn = pygame.K_SPACE
 	quitBtn = pygame.K_ESCAPE
-
 	def checkReady(self, state):
 		#Get the currently pressed keys
 		keys=pygame.key.get_pressed()
+		values = gameController.pollAdc()
+		print(values[6],values[7])
 		if keys[gameController.readyBtn]:
 			changeState(state)
 			#delay detection so that it does not progress too quickly
 			time.sleep(0.25)
+		elif gameController.getBtnDown(values):
+			changeState(state)
+			time.sleep(0.25)
 		elif keys[gameController.quitBtn]:
 			pygame.quit()
 		elif keys[pygame.K_RALT] and keys[pygame.K_RETURN]:
-			pygame.display.toggle_fullscreen()	
+			pygame.display.toggle_fullscreen()
+	def getBtnDown(values):
+		for i in range(6,8):
+			if values[i]<1020.0 and values[i]>10.0:
+				return False
+		return True
 	def readyToHit():
 		#1 = target ready
 		for i in range(0,targetCount):
@@ -130,11 +140,19 @@ class gameController():
 				gv.penalty = 2
 				return True
 		else:
+			retVal = gameController.checkLift()
+			if retVal > 0:
+				gv.penalty = retVal
+				return True
 			#setup button press monitoring here
 			pass
-
-	
-
+	def checkLift():
+		values = gameController.pollAdc()
+		for i in range(6,8):
+			if values[i] > 10.0 and values[i] < 1010.0:
+				print("returning ",i-5,values[i])
+				return i - 5
+		return 0
 
 # PINS FOR GAME PROFILE 1 (standard)
 # 0,1,2 - Player 1 targets
