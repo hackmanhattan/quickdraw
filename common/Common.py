@@ -37,7 +37,7 @@ class globalVars():
 
 
   def loadMusic():
-    globalVars.music.load("../audio/background_music.mp3")
+    globalVars.music.load("audio/smoking-gun-by-kevin-macleod.mp3")
 
 
 #Global functions
