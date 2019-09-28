@@ -1,21 +1,32 @@
 import pygame, sys
-from common.Drawable import Image
+from common.Drawable import Image, TextField
 from common.Common import globalVars as gv
 from common.Common import *
 from common.Inputs import gameController as gc
 import time
 import random
 
-class Timeout:
+class WinGameState:
 	def __init__(self):
-		self.background = Image("background_timeout", "quickdraw_timeout.jpg", 0,0, True )
+		self.bg1 = Image("background_p1win", "assets/images/quickdraw_p1win.jpg", 0,0, True )
+		self.bg2 = Image("background_p2win", "assets/images/quickdraw_p2win.jpg", 0,0, True )
+		self.background = self.bg1
+		self.text = TextField("win_text", "test", 200, 400, True)
 
 	def enter(self):
 		# TODO Kill the sound effect from wait here 
 		#
     # Wait 30 seconds to switch to home screen
+		if (gv.winner == 1):
+			self.background = self.bg1
+		else:
+			self.background = self.bg2
 		gv.round_time = 30
 		gv.round_start_time = time.time()
+
+		#Reveal the time for the player who won to hit the target
+		lastTime = gv.cur_elapsed
+		self.text.text = "Time elapsed " + str(round(lastTime,3)) + " seconds"
 		
 
 	def processEvents(self):
@@ -32,6 +43,7 @@ class Timeout:
 
 	def draw(self):
 		self.background.draw(gv.screen)
+		self.text.draw(gv.screen)
     
 	def leave(self):
 		pass

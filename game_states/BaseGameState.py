@@ -6,13 +6,13 @@ from common.Inputs import gameController as gc
 import time
 import random
 
-class Timeout:
+class BaseGameState:
   def __init__(self):
     pass
-    #self.background = Image("background_timeout", "quickdraw_timeout.jpg", 0,0, True )
+    #self.background = Image("assets/images/background_timeout", "quickdraw_timeout.jpg", 0,0, True )
     #
     # self.gameObjects = []
-    # clintImg = Image("fore_clint", "clint.png", 0,250, True )
+    # clintImg = Image("fore_clint", "assets/images/clint.png", 0,250, True )
     # clintObj = GameObject(10,10,True,clintImg)
     # self.gameObjects.append(clintObj)
     #

@@ -6,9 +6,9 @@ from common.Inputs import gameController as gc
 import time
 import random
 
-class ReadyToFire():
+class ReadyToFireGameState():
 	def __init__(self):
-		self.background = Image("background_draw", "quickdraw_draw.jpg", 0,0, True )
+		self.background = Image("background_draw", "assets/images/quickdraw_draw.jpg", 0,0, True )
 		self.timer_text = TextField("round_timer", "TIMER", 0, -(gv.screen_height/2)+40, True)
 
 	def enter(self):

@@ -4,7 +4,7 @@ from pygame.locals import *
 import random
 import time
 from common import Drawable
-from game_states import TitleScreen, StartRound, ReadyToFire, WinState, Penalty, Timeout, InitGameState
+from game_states import TitleScreenGameState, StartRoundGameState, ReadyToFireGameState, WinGameState, PenaltyGameState, TimeoutGameState, InitGameState
 from common.LightController import LightController
 from common.Common import globalVars as gv
 from common.Common import *
@@ -19,13 +19,13 @@ def main():
 
 	#load the game states into the common array for global access
 	gv.gameStates = {
-		"INIT_GAME_STATE": InitGameState.InitGame(),
-		"TITLE_SCREEN_STATE": TitleScreen.TitleScreen(),
-		"START_ROUND_STATE": StartRound.StartRound(),
-		"READY_TO_FIRE_STATE": ReadyToFire.ReadyToFire(),
-		"WIN_STATE": WinState.WinState(),
-		"PENALTY_STATE": Penalty.Penalty(),
-		"TIMEOUT_STATE": Timeout.Timeout()
+		"INIT_GAME_STATE": InitGameState.InitGameState(),
+		"TITLE_SCREEN_STATE": TitleScreenGameState.TitleScreenGameState(),
+		"START_ROUND_STATE": StartRoundGameState.StartRoundGameState(),
+		"READY_TO_FIRE_STATE": ReadyToFireGameState.ReadyToFireGameState(),
+		"WIN_STATE": WinGameState.WinGameState(),
+		"PENALTY_STATE": PenaltyGameState.PenaltyGameState(),
+		"TIMEOUT_STATE": TimeoutGameState.TimeoutGameState()
   }
 	
 	# logo = pygame.image.load("logo.jpg")

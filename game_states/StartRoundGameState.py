@@ -8,12 +8,12 @@ from common.Inputs import gameController as gc
 import time
 import random
 
-class StartRound:
+class StartRoundGameState:
 	def __init__(self):
-		self.background = Image("background_start", "screen_bg.jpg", 0,0, True )
+		self.background = Image("background_start", "assets/images/screen_bg.jpg", 0,0, True )
 		self.debug = TextField("debug_text", "test", -(gv.screen_width/2) + 100, -(gv.screen_height/2)+40, False)
 		self.gameObjects = []
-		clintImg = Image("fore_clint", "clint.png", 0,250, True )
+		clintImg = Image("fore_clint", "assets/images/clint.png", 0,250, True )
 		clintObj = GameObject(10,10,True,clintImg)
 		self.gameObjects.append(clintObj)
 		

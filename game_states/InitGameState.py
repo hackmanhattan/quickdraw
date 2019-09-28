@@ -8,7 +8,7 @@ from common.AnimationController import *
 import time
 import random
 
-class InitGame:
+class InitGameState:
   def __init__(self):
     pass
     # self.background = Image("background_timeout", "quickdraw_timeout.jpg", 0,0, True )
