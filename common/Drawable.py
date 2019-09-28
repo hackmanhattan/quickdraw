@@ -1,16 +1,25 @@
 import pygame, math
 from common.Common import globalVars as gv
 
-class Image:
-	def __init__(self, name, image, pos_x, pos_y, draw):
+class Fill:
+	def __init__(self, name, color, size=None):
+		self.color = color
+		self.size = size
 		self.name = name
-		self.image = pygame.image.load(image)
+	def draw(self, screen):
+		screen.fill(self.color, rect = self.size)
+
+
+class Image:
+	def __init__(self, name, image, pos_x=0, pos_y=0, draw=True):
+		self.name = name
+		self.image = pygame.image.load(image).convert()
 		self.orig = self.image
 		self.pos_x = pos_x
 		self.pos_y = pos_y
 		self.drawable = draw
-		self.offsetX = 0
-		self.offsetY = 0
+		self.offsetX = pos_x
+		self.offsetY = pos_y
 		size = self.image.get_size()
 		self.center = (size[0]/2, size[1]/2)
 

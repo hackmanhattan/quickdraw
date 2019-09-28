@@ -1,4 +1,5 @@
 import pygame
+import time
 
 class AnimationController:
 	def __init__(self, start_x, start_y, target_x, target_y, time, active=False):
@@ -87,23 +88,46 @@ class RotationController:
 		pass
 
 class OpacityController:
-	def __init__(self, start_alpha, target_alpha, time, active=False):
+	def __init__(self, start_alpha, target_alpha, timer_count, active=False):
 		self.start_alpha = start_alpha
 		self.current_alpha = start_alpha
-		self.target_alpha - target_alpha
-		self.time = time
+		self.target_alpha = target_alpha
+		self.start_time = time.time()
+		self.current_time = time.time()
+		self.target_time = time.time() + timer_count
 		self.active = active
 
 	def tick(self, deltaTime):
-		if (self.current_alpha == target_alpha):
+		if (self.current_time >= self.target_time):
 			self.active = False
-		deltaAlpha = abs(self.start_alpha - self.target_alpha)
-		self.current_alpha = deltaAlpha * deltaTime
+
+		self.current_time += deltaTime
+		if (self.start_alpha < self.target_alpha):
+			direction = 'fadeIn'
+		else:
+			direction = 'fadeOut'
+
+		if (direction == 'fadeIn'):
+			self.current_alpha = self.target_alpha - (self.timeRemaining() / self.totalTime())
+			if self.current_alpha > self.target_alpha:
+				self.current_alpha = self.target_alpha
+		else:
+			self.current_alpha = self.timeRemaining() / self.totalTime()
+			if self.current_alpha < self.target_alpha:
+				self.current_alpha = self.target_alpha # - 0.01
 
 	def animate(self, targetObj):
-		#class functionality
+		if targetObj.image.drawable == False:
+			targetObj.image.drawable = True
+		targetObj.image.image.set_alpha(255 * self.current_alpha)
 		pass
-	
+
+	def timeRemaining(self):
+		return self.target_time - self.current_time
+		#Get the total time the animation was set for
+	def totalTime(self):
+		return self.target_time - self.start_time	
+
 	def get_alpha(self):
 		return self.current_alpha
 		

@@ -4,7 +4,7 @@ from pygame.locals import *
 import random
 import time
 from common import Drawable
-from game_states import TitleScreen, StartRound, ReadyToFire, WinState, Penalty, Timeout
+from game_states import TitleScreen, StartRound, ReadyToFire, WinState, Penalty, Timeout, InitGameState
 from common.LightController import LightController
 from common.Common import globalVars as gv
 from common.Common import *
@@ -19,6 +19,7 @@ def main():
 
 	#load the game states into the common array for global access
 	gv.gameStates = {
+		"INIT_GAME_STATE": InitGameState.InitGame(),
 		"TITLE_SCREEN_STATE": TitleScreen.TitleScreen(),
 		"START_ROUND_STATE": StartRound.StartRound(),
 		"READY_TO_FIRE_STATE": ReadyToFire.ReadyToFire(),
@@ -56,7 +57,7 @@ def main():
 	# define a variable to control the main loop
 	running = True
 	
-	gv.currentState = gv.gameStates["TITLE_SCREEN_STATE"]
+	gv.currentState = gv.gameStates["INIT_GAME_STATE"]
 	gv.currentState.enter()
 
 	#define deltatime
@@ -64,25 +65,41 @@ def main():
 
 	# main loop
 	while running:
-			# event handling, gets all event from the eventqueue
-			gv.currentState.processEvents()
+		
+		if len(pygame.event.get(pygame.QUIT)) >= 1:
+			running = False
+		events = pygame.event.get()
+		for event in events:
+			if (event.type == pygame.USEREVENT):
+				pygame.event.post(event)
+			elif (event.type == pygame.KEYUP):
+				if event.key == pygame.K_ESCAPE:
+					running = False
+				else:
+					pygame.event.post(event)
+				pass
+
+		# event handling, gets all event from the eventqueue
+		gv.currentState.processEvents()
+		
+		
+		#run the updates according to deltatime
+		while (accumulated_delta_time > 1/gv.max_framerate):
+			gv.currentState.update(1/gv.max_framerate)
+			accumulated_delta_time -= (1/gv.max_framerate)
+
+		accumulated_delta_time += gv.clock.tick(30) / 1000
+
+		gv.currentState.draw()
+		pygame.display.update()
 
 
-			#run the updates according to deltatime
-			while (accumulated_delta_time > 1/gv.max_framerate):
-				gv.currentState.update(1/gv.max_framerate)
-				accumulated_delta_time -= (1/gv.max_framerate)
-			
-			accumulated_delta_time += gv.clock.tick(30) / 1000
-
-			gv.currentState.draw()
-			pygame.display.update()
-			
-			for event in pygame.event.get():
-					# only do something if the event is of type QUIT
-					if event.type == pygame.QUIT:
-							# change the value to False, to exit the main loop
-							running = False
+		# for event in pygame.event.get():
+		# 		# only do something if the event is of type QUIT
+		# 		print(event)
+		# 		if event.type == pygame.QUIT:
+		# 				# change the value to False, to exit the main loop
+		# 				running = False
 
 
 # run the main function only if this module is executed as the main script
