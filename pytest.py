@@ -68,16 +68,17 @@ def main():
 		
 		if len(pygame.event.get(pygame.QUIT)) >= 1:
 			running = False
-		events = pygame.event.get()
-		for event in events:
-			if (event.type == pygame.USEREVENT):
-				pygame.event.post(event)
-			elif (event.type == pygame.KEYUP):
-				if event.key == pygame.K_ESCAPE:
-					running = False
-				else:
-					pygame.event.post(event)
-				pass
+
+		# events = pygame.event.get()
+		# for event in events:
+		# 	print(len(events))
+		# 	print(event.type)
+		# 	if (event.type == pygame.KEYUP):
+		# 		if event.key == pygame.K_ESCAPE:
+		# 			running = False
+		# 		else:
+		# 			pygame.event.post(event)
+		# 			pass
 
 		# event handling, gets all event from the eventqueue
 		gv.currentState.processEvents()
