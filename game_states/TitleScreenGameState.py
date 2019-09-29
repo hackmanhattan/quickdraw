@@ -9,7 +9,7 @@ from common.LightController import Color
 
 class TitleScreenGameState:
   def __init__(self):
-    self.background = Image("background_title", "assets/images/quickdraw_title_b.jpg", 0,0, True )
+    self.background = Image("background_title", "assets/images/quickdraw_title.jpg", 0,0, True )
     self.gameObjects = []
     gameImage = Image("crosshairs", "assets/images/crosshair.png", 0,0, True )
     gameObject = GameObject(10,10,True,gameImage)
