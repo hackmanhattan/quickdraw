@@ -11,7 +11,7 @@ class TitleScreenGameState:
   def __init__(self):
     self.background = Image("background_title", "assets/images/quickdraw_title.jpg", 0,0, True )
     self.gameObjects = []
-    gameImage = Image("crosshairs", "assets/images/crosshair.png", 0,0, True )
+    gameImage = Image("crosshairs", "assets/images/crosshair.png", 0,0, True, alpha=True )
     gameObject = GameObject(10,10,True,gameImage)
     self.gameObjects.append(gameObject)
 

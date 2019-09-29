@@ -11,9 +11,12 @@ class Fill:
 
 
 class Image:
-	def __init__(self, name, image, pos_x=0, pos_y=0, draw=True):
+	def __init__(self, name, image, pos_x=0, pos_y=0, draw=True, alpha=False):
 		self.name = name
-		self.image = pygame.image.load(image).convert()
+		if alpha:
+			self.image = pygame.image.load(image).convert_alpha()
+		else:
+			self.image = pygame.image.load(image).convert()
 		self.orig = self.image
 		self.pos_x = pos_x
 		self.pos_y = pos_y
