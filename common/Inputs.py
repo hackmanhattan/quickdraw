@@ -1,4 +1,3 @@
-
 import pygame, time
 from common.Common import *
 from common.Common import globalVars as gv
@@ -11,6 +10,7 @@ impactThreshold = 30
 targetCount = 6
 class gameController():
 	target_state = [0]*targetCount #0=round start, 1 = target ready, 2 =target hit
+	prevBtnState = []
 	def __init__(self):
 		pass
 	if (gv.debug):
@@ -37,23 +37,30 @@ class gameController():
 		#Get the currently pressed keys
 		keys=pygame.key.get_pressed()
 		values = gameController.pollAdc()
-		print(values[6],values[7])
+		#TODO do not start game immediately. show animation like Death Stranding UI for selection structure option
+		curBtnState = gameController.getBtnState(values)
+		deltaBtnState = curBtnState ==  gameController.prevBtnState
+		# if prevBtnState is not the same as current
 		if keys[gameController.readyBtn]:
 			changeState(state)
 			#delay detection so that it does not progress too quickly
 			time.sleep(0.25)
-		elif gameController.getBtnDown(values):
+		elif curBtnState == [True, True]:
 			changeState(state)
 			time.sleep(0.25)
 		elif keys[gameController.quitBtn]:
 			pygame.quit()
 		elif keys[pygame.K_RALT] and keys[pygame.K_RETURN]:
 			pygame.display.toggle_fullscreen()
-	def getBtnDown(values):
+		gameController.prevBtnState = curBtnState
+	def getBtnState(values):
+		retlist = []
 		for i in range(6,8):
 			if values[i]<1020.0 and values[i]>10.0:
-				return False
-		return True
+				retlist.append(False)
+			else:
+				retlist.append(True)
+		return retlist
 	def readyToHit():
 		#1 = target ready
 		for i in range(0,targetCount):

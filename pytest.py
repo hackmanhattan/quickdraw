@@ -51,9 +51,7 @@ def main():
 		gv.lightsObject = GameObject(0,0,False)
 		for light in gv.lightController.getLights():
 			gv.lightsObject.add_light(light)
-
-
-
+	
 	# define a variable to control the main loop
 	running = True
 	
