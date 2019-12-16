@@ -40,6 +40,7 @@ class gameController():
 		#TODO do not start game immediately. show animation like Death Stranding UI for selection structure option
 		curBtnState = gameController.getBtnState(values)
 		deltaBtnState = curBtnState ==  gameController.prevBtnState
+		print(curBtnState, gameController.prevBtnState)
 		# if prevBtnState is not the same as current
 		if keys[gameController.readyBtn]:
 			changeState(state)

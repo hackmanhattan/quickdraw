@@ -39,4 +39,6 @@ class PenaltyGameState:
 		self.text.draw(gv.screen)
     
 	def leave(self):
+		#TODO do it right
+		time.sleep(2)
 		pass

@@ -46,4 +46,6 @@ class WinGameState:
 		self.text.draw(gv.screen)
     
 	def leave(self):
+		#TODO leave on screen correctly
+		time.sleep(2)
 		pass
