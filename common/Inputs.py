@@ -47,7 +47,7 @@ class gameController():
 		#this is not used
 		#deltaBtnState = curBtnState ==  gameController.prevBtnState
 
-		# print(curBtnState, gameController.prevBtnState)
+		print(curBtnState, gameController.prevBtnState)
 		# if prevBtnState is not the same as current
 
 		#increment readystates via detection methods
