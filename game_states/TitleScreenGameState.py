@@ -14,6 +14,8 @@ class TitleScreenGameState:
     gameImage = Image("crosshairs", "assets/images/crosshair.png", 0,0, True, alpha=True )
     gameObject = GameObject(10,10,True,gameImage)
     self.gameObjects.append(gameObject)
+    self.text = TextField("readyTxt", "test", 200, 400, True)
+    self.text2 = TextField("readyTxt", "test", 100, 400, True)
 
   def addGameObj(self, gameObject):
     self.gameObjects.append(gameObject)
@@ -41,14 +43,17 @@ class TitleScreenGameState:
 
   def processEvents(self):
     #check if the ready button has been pressed and transit to the start state
-    gc.checkReady(True, "START_ROUND_STATE")
+    gc.checkReady(True, "START_ROUND_STATE", "START_ROUND_STATE")
 
   def update(self, deltaTime):
+    self.text.text = "Multiplayer Ready: " + str(round(gv.multiPlayerReadyCount,3)) + " seconds"
+    self.text2.text = "Single player Ready: " + str(round(gv.singlePlayerReadyCount,3)) + " seconds"
     for obj in self.gameObjects:
       obj.update(deltaTime)
 
   def draw(self):
     self.background.draw(gv.screen)
+    self.text.draw(gv.screen)
     for obj in self.gameObjects:
       obj.draw(gv.screen)
 

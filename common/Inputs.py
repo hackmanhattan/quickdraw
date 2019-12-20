@@ -8,6 +8,8 @@ if (gv.debug == False):
 
 impactThreshold = 30
 targetCount = 6
+waitTime = 3000
+
 class gameController():
 	target_state = [0]*targetCount #0=round start, 1 = target ready, 2 =target hit
 	prevBtnState = []
@@ -33,27 +35,45 @@ class gameController():
 		pass
 	readyBtn = pygame.K_SPACE
 	quitBtn = pygame.K_ESCAPE
-	def checkReady(self, state):
+	
+	def checkReady(self, multiPlayerState, singlePlayerState):
 		#Get the currently pressed keys
-		keys=pygame.key.get_pressed()
+		keys = pygame.key.get_pressed()
 		values = gameController.pollAdc()
+
 		#TODO do not start game immediately. show animation like Death Stranding UI for selection structure option
 		curBtnState = gameController.getBtnState(values)
-		deltaBtnState = curBtnState ==  gameController.prevBtnState
-		print(curBtnState, gameController.prevBtnState)
+
+		#this is not used
+		#deltaBtnState = curBtnState ==  gameController.prevBtnState
+
+		# print(curBtnState, gameController.prevBtnState)
 		# if prevBtnState is not the same as current
+
+		#increment readystates via detection methods
+		if curBtnState == [True, True]:
+			multiPlayerReadyCount = multiPlayerReadyCount + 1
+			singlePlayerReadyCount = 0
+		elif curBtnState == [True, False]:
+			singlePlayerReadyCount = singlePlayerReadyCount + 1
+			multiPlayerReadyCount = 0
+		
+
+		#Check for ready button, or ready counts to a specific value
 		if keys[gameController.readyBtn]:
-			changeState(state)
-			#delay detection so that it does not progress too quickly
-			time.sleep(0.25)
-		elif curBtnState == [True, True]:
-			changeState(state)
-			time.sleep(0.25)
+			changeState(multiPlayerState)
+		elif gv.multiPlyerReadyCount > waitTime:
+			gv.multiPlayerReadyCount = 0
+			changeState(multiPlayerState)
+		elif gv.singlePlayerReadyCount > waitTime:
+			gv.singlePlayerReadyCount = 0
+			changeState(singlePlayerState)
 		elif keys[gameController.quitBtn]:
 			pygame.quit()
 		elif keys[pygame.K_RALT] and keys[pygame.K_RETURN]:
 			pygame.display.toggle_fullscreen()
 		gameController.prevBtnState = curBtnState
+
 	def getBtnState(values):
 		retlist = []
 		for i in range(6,8):
@@ -62,6 +82,7 @@ class gameController():
 			else:
 				retlist.append(True)
 		return retlist
+
 	def readyToHit():
 		#1 = target ready
 		for i in range(0,targetCount):
@@ -70,6 +91,7 @@ class gameController():
 			for light in gv.lightController.getLights():
 				light.changeAll(0,255,0,1,False)
 			gv.lightController._pixels.show()
+
 	def pollAdc():
 		#poll the MCP3008 for the actual target readouts
 		# signal_reads is # of read cycles to average output
@@ -154,6 +176,7 @@ class gameController():
 				return True
 			#setup button press monitoring here
 			pass
+
 	def checkLift():
 		values = gameController.pollAdc()
 		for i in range(6,8):

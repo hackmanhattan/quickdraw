@@ -21,6 +21,8 @@ class globalVars():
   winner = 2
   penalty = 0
   basicfont = pygame.font.SysFont(None, 72)
+  singlePlayerReadyCount = 0
+  multiPlayerReadyCount = 0
 
   debug = False
   screen_width = 1600
