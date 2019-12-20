@@ -54,6 +54,7 @@ class TitleScreenGameState:
   def draw(self):
     self.background.draw(gv.screen)
     self.text.draw(gv.screen)
+    self.text2.draw(gv.screen)
     for obj in self.gameObjects:
       obj.draw(gv.screen)
 
