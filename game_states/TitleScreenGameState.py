@@ -15,7 +15,7 @@ class TitleScreenGameState:
     gameObject = GameObject(10,10,True,gameImage)
     self.gameObjects.append(gameObject)
     self.text = TextField("readyTxt", "test", 200, 400, True)
-    self.text2 = TextField("readyTxt", "test", 100, 400, True)
+    self.text2 = TextField("readyTxt", "test", 200, 300, True)
 
   def addGameObj(self, gameObject):
     self.gameObjects.append(gameObject)

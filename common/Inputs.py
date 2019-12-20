@@ -52,11 +52,11 @@ class gameController():
 
 		#increment readystates via detection methods
 		if curBtnState == [True, True]:
-			multiPlayerReadyCount = multiPlayerReadyCount + 1
-			singlePlayerReadyCount = 0
+			gv.multiPlayerReadyCount = gv.multiPlayerReadyCount + 1
+			gv.singlePlayerReadyCount = 0
 		elif curBtnState == [True, False]:
-			singlePlayerReadyCount = singlePlayerReadyCount + 1
-			multiPlayerReadyCount = 0
+			gv.singlePlayerReadyCount = gv.singlePlayerReadyCount + 1
+			gv.multiPlayerReadyCount = 0
 		
 
 		#Check for ready button, or ready counts to a specific value
