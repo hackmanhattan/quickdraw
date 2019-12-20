@@ -43,7 +43,7 @@ class TitleScreenGameState:
 
   def processEvents(self):
     #check if the ready button has been pressed and transit to the start state
-    gc.checkReady(True, "START_ROUND_STATE", "START_ROUND_STATE")
+    gc.checkReady(True, "SINGLE_PLAYER_STATE", "MULTIPLAYER_STATE")
 
   def update(self, deltaTime):
     self.text.text = "Multiplayer Ready: " + str(round(gv.multiPlayerReadyCount,3)) + " seconds"
