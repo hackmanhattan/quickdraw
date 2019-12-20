@@ -20,7 +20,7 @@ class TimeoutGameState:
 
 	def processEvents(self):
 		#check if the ready button has been pressed and transit to the title state
-		gc.checkReady(True, "TITLE_SCREEN_STATE")
+		gc.continueCheck(True, "TITLE_SCREEN_STATE")
 
 	def update(self, deltaTime):
     # Increment the timer and exit to the timeout state after 30 seconds

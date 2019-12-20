@@ -35,6 +35,18 @@ class gameController():
 		pass
 	readyBtn = pygame.K_SPACE
 	quitBtn = pygame.K_ESCAPE
+
+	def continueCheck(self, state):
+		keys = pygame.key.get_pressed()
+		values = gameController.pollAdc()
+
+		if keys[gameController.readyBtn]:
+			changeState(state)
+		elif keys[gameController.quitBtn]:
+			pygame.quit()
+		elif keys[pygame.K_RALT] and keys[pygame.K_RETURN]:
+			pygame.display.toggle_fullscreen()
+
 	
 	def checkReady(self, multiPlayerState, singlePlayerState):
 		#Get the currently pressed keys
