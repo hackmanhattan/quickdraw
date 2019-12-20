@@ -92,7 +92,7 @@ class gameController():
 	def getBtnState(values):
 		retlist = []
 		for i in range(6,8):
-			if values[i]<1020.0 and values[i]>10.0:
+			if values[i]<1015.0 and values[i]>10.0:
 				retlist.append(False)
 			else:
 				retlist.append(True)
