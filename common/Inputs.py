@@ -8,7 +8,7 @@ if (gv.debug == False):
 
 impactThreshold = 30
 targetCount = 6
-waitTime = 3000
+waitTime = 50
 
 class gameController():
 	target_state = [0]*targetCount #0=round start, 1 = target ready, 2 =target hit
@@ -56,6 +56,9 @@ class gameController():
 			gv.singlePlayerReadyCount = 0
 		elif curBtnState == [True, False]:
 			gv.singlePlayerReadyCount = gv.singlePlayerReadyCount + 1
+			gv.multiPlayerReadyCount = 0
+		elif curBtnState == [False, False]:
+			gv.singlePlayerReadyCount = 0
 			gv.multiPlayerReadyCount = 0
 		
 
