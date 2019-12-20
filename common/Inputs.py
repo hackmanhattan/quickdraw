@@ -62,7 +62,7 @@ class gameController():
 		#Check for ready button, or ready counts to a specific value
 		if keys[gameController.readyBtn]:
 			changeState(multiPlayerState)
-		elif gv.multiPlyerReadyCount > waitTime:
+		elif gv.multiPlayerReadyCount > waitTime:
 			gv.multiPlayerReadyCount = 0
 			changeState(multiPlayerState)
 		elif gv.singlePlayerReadyCount > waitTime:
