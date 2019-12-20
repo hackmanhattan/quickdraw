@@ -21,7 +21,8 @@ def main():
 	gv.gameStates = {
 		"INIT_GAME_STATE": InitGameState.InitGameState(),
 		"TITLE_SCREEN_STATE": TitleScreenGameState.TitleScreenGameState(),
-		"START_ROUND_STATE": StartRoundGameState.StartRoundGameState(),
+		"SINGLE_PLAYER_STATE": StartRoundGameState.StartRoundGameState(),
+		"MULTIPLAYER_STATE": StartRoundGameState.StartRoundGameState(),
 		"READY_TO_FIRE_STATE": ReadyToFireGameState.ReadyToFireGameState(),
 		"WIN_STATE": WinGameState.WinGameState(),
 		"PENALTY_STATE": PenaltyGameState.PenaltyGameState(),
