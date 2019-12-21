@@ -36,6 +36,7 @@ class gameController():
 		pass
 	readyBtn = pygame.K_SPACE
 	quitBtn = pygame.K_ESCAPE
+	anim_cleared = False
 
 	def continueCheck(self, state):
 		keys = pygame.key.get_pressed()
