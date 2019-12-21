@@ -22,7 +22,7 @@ class ReadyToSingleGameState():
 		
 
 	def processEvents(self):
-		if (gc.checkTargets()):
+		if (gc.checkTargetsSingle()):
 			changeState("WIN_STATE")
 
 
