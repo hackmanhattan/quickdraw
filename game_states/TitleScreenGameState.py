@@ -38,7 +38,7 @@ class TitleScreenGameState:
     self.addGameObj(gv.lightsObject)
     # for light in gv.lightsObject.lights:
     #   light.setGlow(500, Color(255,0,0), 'GlowFadeIn')
-    # gv.lightsObject.lights[0].setGlow(500, Color(255,0,0), 'GlowFadeIn')
+    gv.lightsObject.lights[0].setGlow(500, Color(255,0,0), 'GlowFadeIn')
 
 
   def processEvents(self):
