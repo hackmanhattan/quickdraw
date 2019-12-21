@@ -1,6 +1,7 @@
 import pygame, time
 from common.Common import *
 from common.Common import globalVars as gv
+from common.LightController import Color
 
 if (gv.debug == False):
 	import Adafruit_GPIO.SPI as SPI
@@ -66,12 +67,15 @@ class gameController():
 		if curBtnState == [True, True]:
 			gv.multiPlayerReadyCount = gv.multiPlayerReadyCount + 1
 			gv.singlePlayerReadyCount = 0
+			gv.lightController._lights[0].changeInPercSeq(Color(255,0,0), (gv.multiPlayerReadyCount / waitTime), gv.lightController._lights[3], gv.lightController._lights[5]  )
 		elif curBtnState == [True, False]:
 			gv.singlePlayerReadyCount = gv.singlePlayerReadyCount + 1
 			gv.multiPlayerReadyCount = 0
+			gv.lightController._lights[0].changeInPercSeq(Color(0,255,40), (gv.singlePlayerReadyCount / waitTime), gv.lightController._lights[0], gv.lightController._lights[2]  )
 		elif curBtnState == [False, False]:
 			gv.singlePlayerReadyCount = 0
 			gv.multiPlayerReadyCount = 0
+			gv.lightController._lights[0].globalChangeAll(0,0,0)
 		
 
 		#Check for ready button, or ready counts to a specific value

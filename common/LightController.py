@@ -91,6 +91,16 @@ class LightGroup():
   def changeOne(self, led, r, g, b, i=1):
     print('changing led ' + str(led) + ' to ' + str(r) + ', ' + str(g) + ', ' + str(b) + ' at level ' + str(i))
     self._pixels[led] = (int(r/i),int(g/i),int(b/i))
+
+  def changeInPercSeq(self, color, percentLit, lightGroupStart, lightGroupEnd, i=1):
+    print('lighting lights from start to finish')
+    led_range_size = (lightGroupEnd + self._group_size) - lightGroupStart._leds
+    fillRangeEnd = (led_range_size * percentLit) + lightGroupStart._leds
+
+    self._pixels.fill_range(color, self._leds, fillRangeEnd)
+    # for l in range(lightGroupStart._leds, lightGroupEnd + self._group_size):
+
+  
   
   #Different Light animations
   def fadeIn(self, color):
