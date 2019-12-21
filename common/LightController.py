@@ -99,6 +99,7 @@ class LightGroup():
 
     self._pixels.fill_range(color.intensity(i), self._leds, fillRangeEnd)
     # for l in range(lightGroupStart._leds, lightGroupEnd + self._group_size):
+    self._pixels.show()
 
   
   
