@@ -23,6 +23,7 @@ class globalVars():
   basicfont = pygame.font.SysFont(None, 72)
   singlePlayerReadyCount = 0
   multiPlayerReadyCount = 0
+  next_round_state = "MULTIPLAYER_STATE"
 
   debug = False
   screen_width = 1600

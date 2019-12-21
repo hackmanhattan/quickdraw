@@ -4,7 +4,7 @@ from pygame.locals import *
 import random
 import time
 from common import Drawable
-from game_states import TitleScreenGameState, StartRoundGameState, ReadyToFireGameState, WinGameState, PenaltyGameState, TimeoutGameState, InitGameState
+from game_states import TitleScreenGameState, StartRoundGameState, ReadyToFireGameState, WinGameState, PenaltyGameState, TimeoutGameState, InitGameState, ReadyToSingleGameState
 from common.LightController import LightController
 from common.Common import globalVars as gv
 from common.Common import *
@@ -24,6 +24,7 @@ def main():
 		"SINGLE_PLAYER_STATE": StartRoundGameState.StartRoundGameState(),
 		"MULTIPLAYER_STATE": StartRoundGameState.StartRoundGameState(),
 		"READY_TO_FIRE_STATE": ReadyToFireGameState.ReadyToFireGameState(),
+		"READY_TO_SINGLE_STATE": ReadyToSingleGameState.ReadyToSingleGameState(),
 		"WIN_STATE": WinGameState.WinGameState(),
 		"PENALTY_STATE": PenaltyGameState.PenaltyGameState(),
 		"TIMEOUT_STATE": TimeoutGameState.TimeoutGameState()

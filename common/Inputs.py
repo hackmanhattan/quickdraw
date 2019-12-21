@@ -95,9 +95,11 @@ class gameController():
 			changeState(multiPlayerState)
 		elif gv.multiPlayerReadyCount >= waitTime:
 			gv.multiPlayerReadyCount = 0
+			gv.next_round_state = "MULTIPLAYER_STATE"
 			changeState(multiPlayerState)
 		elif gv.singlePlayerReadyCount >= waitTime:
 			gv.singlePlayerReadyCount = 0
+			gv.next_round_state = "SINGLE_PLAYER_STATE"
 			changeState(singlePlayerState)
 		elif keys[gameController.quitBtn]:
 			pygame.quit()
@@ -204,7 +206,12 @@ class gameController():
 			retVal = gameController.checkLift()
 			if retVal > 0:
 				gv.penalty = retVal
-				return True
+				if retVal == 1:
+					return True
+				else:
+					if gv.next_round_state == "MULTIPLATER_STATE":
+						return True
+						
 			#setup button press monitoring here
 			pass
 
