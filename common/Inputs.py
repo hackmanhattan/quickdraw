@@ -66,13 +66,13 @@ class gameController():
 		#increment readystates via detection methods
 		if curBtnState == [True, True]:
 			for light in gv.lightsObject.lights:
-      	light.clearAnim()
+				light.clearAnim()
 			gv.multiPlayerReadyCount = gv.multiPlayerReadyCount + 1
 			gv.singlePlayerReadyCount = 0
 			gv.lightController._lights[0].changeInPercSeq(Color(255,0,0), (gv.multiPlayerReadyCount / waitTime), gv.lightController._lights[0], gv.lightController._lights[2]  )
 		elif curBtnState == [True, False]:
 			for light in gv.lightsObject.lights:
-      	light.clearAnim()
+				light.clearAnim()
 			gv.singlePlayerReadyCount = gv.singlePlayerReadyCount + 1
 			gv.multiPlayerReadyCount = 0
 			gv.lightController._lights[0].changeInPercSeq(Color(0,255,40), (gv.singlePlayerReadyCount / waitTime), gv.lightController._lights[3], gv.lightController._lights[5]  )
