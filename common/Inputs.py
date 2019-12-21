@@ -223,7 +223,7 @@ class gameController():
 				if retVal == 1:
 					return True
 				else:
-					if gv.next_round_state == "MULTIPLATER_STATE":
+					if gv.next_round_state == "MULTIPLAYER_STATE":
 						return True
 
 			#setup button press monitoring here

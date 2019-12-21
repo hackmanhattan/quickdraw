@@ -93,7 +93,7 @@ class LightGroup():
     self._pixels[led] = (int(r/i),int(g/i),int(b/i))
 
   def changeInPercSeq(self, color, percentLit, lightGroupStart, lightGroupEnd, i=1):
-    print('lighting lights from start to finish')
+    # print('lighting lights from start to finish')
     led_range_size = (lightGroupEnd._leds + self._group_size) - lightGroupStart._leds
     # fillRangeEnd = (led_range_size * percentLit) + lightGroupStart._leds
     fillRangeStart = (lightGroupEnd._leds + self._group_size) - (led_range_size * percentLit)
