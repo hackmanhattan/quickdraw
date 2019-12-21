@@ -66,6 +66,7 @@ class gameController():
 
 		#increment readystates via detection methods
 		if curBtnState == [True, True]:
+			gv.lightController._pixels.fill((0,0,0))
 			gameController.anim_cleared = True
 			for light in gv.lightsObject.lights:
 				light.clearAnim()
