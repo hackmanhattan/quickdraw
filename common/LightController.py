@@ -97,7 +97,7 @@ class LightGroup():
     led_range_size = (lightGroupEnd._leds + self._group_size) - lightGroupStart._leds
     fillRangeEnd = (led_range_size * percentLit) + lightGroupStart._leds
 
-    self._pixels.fill_range(color, self._leds, fillRangeEnd)
+    self._pixels.fill_range(color.intensity(i), self._leds, fillRangeEnd)
     # for l in range(lightGroupStart._leds, lightGroupEnd + self._group_size):
 
   
