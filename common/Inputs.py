@@ -192,7 +192,7 @@ class gameController():
 						return True
 			pass
 	
-	def checkTargets():
+	def checkTargetsSingle():
 		values = gameController.pollAdc()
 		for i in range(0,targetCount):
 			if values[i]>impactThreshold and gameController.target_state[i] is 1:
