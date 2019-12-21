@@ -66,15 +66,24 @@ class gameController():
 
 		#increment readystates via detection methods
 		if curBtnState == [True, True]:
+			#both button pressed
 			gv.lightController._pixels.fill((0,0,0))
 			gameController.anim_cleared = True
 			for light in gv.lightsObject.lights:
 				light.clearAnim()
+			
+			#increment counter and make sure other one is 0'd out
 			gv.multiPlayerReadyCount = gv.multiPlayerReadyCount + 1
 			gv.singlePlayerReadyCount = 0
+
+			#change player 2 tower to increment lights
 			gv.lightController._lights[0].changeInPercSeq(Color(255,0,0), (gv.multiPlayerReadyCount / waitTime), gv.lightController._lights[0], gv.lightController._lights[2]  )
+
+			#change player 1 tower to increment lights
 			gv.lightController._lights[0].changeInPercSeq(Color(255,0,0), (gv.singlePlayerReadyCount / waitTime), gv.lightController._lights[3], gv.lightController._lights[5]  )
+			
 		elif curBtnState == [True, False]:
+			#player one button pressed
 			gv.lightController._pixels.fill((0,0,0))
 			gameController.anim_cleared = True
 			for light in gv.lightsObject.lights:
@@ -83,6 +92,7 @@ class gameController():
 			gv.multiPlayerReadyCount = 0
 			gv.lightController._lights[0].changeInPercSeq(Color(0,255,40), (gv.singlePlayerReadyCount / waitTime), gv.lightController._lights[3], gv.lightController._lights[5]  )
 		elif curBtnState == [False, False] or curBtnState == [False, True]:
+			#neutral or 2nd player only button pressed
 			gv.singlePlayerReadyCount = 0
 			gv.multiPlayerReadyCount = 0
 			if gameController.anim_cleared == True:
