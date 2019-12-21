@@ -73,6 +73,7 @@ class gameController():
 			gv.multiPlayerReadyCount = gv.multiPlayerReadyCount + 1
 			gv.singlePlayerReadyCount = 0
 			gv.lightController._lights[0].changeInPercSeq(Color(255,0,0), (gv.multiPlayerReadyCount / waitTime), gv.lightController._lights[0], gv.lightController._lights[2]  )
+			gv.lightController._lights[0].changeInPercSeq(Color(255,0,0), (gv.singlePlayerReadyCount / waitTime), gv.lightController._lights[3], gv.lightController._lights[5]  )
 		elif curBtnState == [True, False]:
 			gv.lightController._pixels.fill((0,0,0))
 			gameController.anim_cleared = True
