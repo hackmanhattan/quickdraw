@@ -167,7 +167,9 @@ class gameController():
 						target_state[i] = 2
 						# TODO: code to change target color
 						# TODO: check if winner
-						if sum(target_state[0:6]) is 12:
+						if sum(target_state[0:3]) is 6:
+							gv.winner = 2
+						elif sum(target_state[3:6]) is 6:
 							gv.winner = 1
 				return False
 		else:
@@ -190,20 +192,16 @@ class gameController():
 						return True
 			pass
 	
-	def checkTargetsSingle():
+	def checkTargets():
 		values = gameController.pollAdc()
-
 		for i in range(0,targetCount):
 			if values[i]>impactThreshold and gameController.target_state[i] is 1:
 				gameController.target_state[i] = 2
-				# TODO: code to change target color
+
 				gv.lightController.getLights()[i].changeAll(0,0,255,1,True)
-				# TODO: check if winner
-				if sum(gameController.target_state[0:3]) is 6:
+
+				if sum(gameController.target_state[0:6]) is 12:
 					gv.winner = 1
-					return True
-				elif sum(gameController.target_state[3:6]) is 6:
-					gv.winner = 2
 					return True
 		pass
 	
