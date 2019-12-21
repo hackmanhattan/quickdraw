@@ -84,8 +84,7 @@ class gameController():
 			gv.multiPlayerReadyCount = 0
 			if gameController.anim_cleared == True:
 				gameController.anim_cleared = False
-				for light in gv.lightsObject.lights:
-					light.setGlow(500, Color(255,0,0), 'GlowFadeIn')
+				gv.lightsObject.lights[0].setGlow(500, Color(255,0,0), 'GlowFadeIn')
 		
 
 		#Check for ready button, or ready counts to a specific value
