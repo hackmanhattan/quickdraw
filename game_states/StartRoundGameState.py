@@ -60,7 +60,7 @@ class StartRoundGameState:
 
 		#Check to see if the round is over
 		if gv.cur_elapsed > gv.round_time:
-			if gv.next_round_state == "MULTIPLATER_STATE":
+			if gv.next_round_state == "MULTIPLAYER_STATE":
 				changeState("READY_TO_FIRE_STATE")
 			else:
 				changeState("READY_TO_SINGLE_STATE")
